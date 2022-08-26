@@ -1,0 +1,51 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+.pagination ul {
+    display: flex;
+    background: $second-text-color;
+    
+}
+
+.pagination li {
+    font-style: normal;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 13px 11px;
+    margin-right: 3px;
+    height: 40px;
+        width: 40px;
+}
+
+// .pagination ul li.numb {
+    
+// }
+
+.pagination ul li.btn {
+background-color: $background-light-grey;
+ 
+   
+      
+}
+
+.pagination ul li.dots {
+    
+    cursor: default;
+    padding: 10px  11px 15px ;
+    @media screen and (max-width: 560px) {
+       display: none;
+        }
+}
+
+.pagination ul li.active,
+.pagination ul li.btn:hover,
+.pagination ul li.numb:hover {
+
+    background: $accent-color;
+   
+    color: #fff;
+}
