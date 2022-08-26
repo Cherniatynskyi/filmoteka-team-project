@@ -1,18 +1,22 @@
 <header class="header" id="header">
-  <div class="header-logo">
-    <picture class="header-logo__img">
-      <img src="" alt="company logo" />
-    </picture>
-    <h1>Filmoteka</h1>
-  </div class="header-logo__name">
+  <nav class="nav">
+    <a class="nav-logo" href="">
+      <svg class="nav-logo__icon"></svg>
+      <span class="nav-logo__text">Filmoteka</span>
+    </a>
 
-  <nav class="header-nav">
-    <ul class="header-nav__">
-      <li><a href="">HOME</a></li>
-      <li><a href=""></a>MY LIBRARY</li>
-    </ul>
+    <button class="nav-btn current">HOME</button>
+    <button class="nav-btn">MY LIBRARY</button>
   </nav>
-  <div>
-    <input type="text" />
+
+  <div class="film-search">
+    <form class="film-search__form">
+      <input
+        class="film-search__input"
+        type="text"
+        placeholder="Movie search"
+        autocomplete="off"
+      />
+    </form>
   </div>
 </header>
