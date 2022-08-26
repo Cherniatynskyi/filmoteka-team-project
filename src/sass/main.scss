@@ -1,10 +1,31 @@
 @import './base/body';
 
+<<<<<<< Updated upstream
 @import './base/reset';
 
+=======
+>>>>>>> Stashed changes
 @import './base/reset';
+@import './utils/hidden-title';
+@import './utils/variables';
+@import './components/header';
+@import './components/loader';
+<<<<<<< Updated upstream
+@import './components/footer';
+@import './components/pagination';
+
+=======
+<<<<<<< HEAD
+@import './components/footer';
+
+
 @import './components/header';
 @import './components/loader';
 @import './components/footer';
 @import './components/pagination';
 
+=======
+@import './components/main-container';
+@import './components/footer'
+>>>>>>> f4a8659d06eef0c15a761241e7d2349d12dcf946
+>>>>>>> Stashed changes
