@@ -1,3 +1,53 @@
-footer{
-    color: $main-text-color;
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: $footer-text-color;
+    background-color: $background-light-grey;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.19;
+}
+
+.footer_content-container {
+    display: flex;
+    position: relative;
+    padding: 30 0 30 0;
+    @media screen and (max-width: 560px) {
+        flex-direction: column;
+    }
+}
+
+.footer_text-part2-container{
+    display: flex;
+}
+
+.footer_text-part1{
+    display: flex;
+    justify-content: center;
+}
+
+.footer_link {
+    display: inline-block;
+    text-decoration: underline;
+    text-decoration-thickness: 6%;
+    margin-left: 5px;
+    cursor: pointer;
+    color: $footer-text-color;
+    background-color: $background-light-grey;
+}
+
+.footer_span{
+    margin-left: 34px;
+}
+
+.footer_heart-svg{
+    position: absolute;
+    left: 342;
+    top: 34;
+    @media screen and (max-width: 560px) {
+            left: 121.5;
+            top: 53
+        }
 }
