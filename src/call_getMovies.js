@@ -1,5 +1,5 @@
 import { getMovies } from './services/getMovies';
 
-getMovies('trending/movie/day', null).then(response =>
+getMovies('search/movie', 'avengers', 3).then(response =>
   console.log(response.data.results)
 );
