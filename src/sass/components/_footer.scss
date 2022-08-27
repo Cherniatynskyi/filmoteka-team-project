@@ -5,6 +5,7 @@ footer {
 
     color: $footer-text-color;
     background-color: $background-light-grey;
+    background-position: center;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.19;
@@ -45,7 +46,7 @@ footer {
 
 .footer_heart-svg{
     position: absolute;
-    left: 338;
+    left: 340;
     top: 34;
     @media screen and (max-width: 560px) {
             left: 121.5;
