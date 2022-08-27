@@ -3,32 +3,30 @@ import { getMovies, API_URL, API_KEY } from './getMovies';
 import { makeMovieTitle, getProperGenre } from './trendingPage';
 import { addMoviesInStorage, getMovieFromStorageByID } from './addFindMovieInStorage';
 
+const filmSearch = document.querySelector('.film-search');
+const moviesListContainer = document.querySelector('.movie-grid-list');
+const formError = document.querySelector('.form__error');
 
-const filmSearch = document.querySelector(".film-search");
-const moviesListContainer = document.querySelector(".movie-grid-list");
-const formError = document.querySelector(".form__error")
-
-filmSearch, addEventListener("submit", findMovies);
+filmSearch, addEventListener('submit', findMovies);
 
 async function findMovies(e) {
   e.preventDefault();
   let request = e.target.firstElementChild.value;
   try {
-    const responseArr = await getMovies('search/movie', request, 1)
+    const responseArr = await getMovies('search/movie', request, 1);
     errorIsHidden();
     checkAndMarkup(responseArr);
-    
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
 export function clearGalleryList(response) {
-    if (response.status === 200) {
-        moviesListContainer.innerHTML = '';
-        return
-    }
-    return "No films"
+  if (response.status === 200) {
+    moviesListContainer.innerHTML = '';
+    return;
+  }
+  return 'No films';
 }
 
 function checkAndMarkup(responseArr) {
@@ -42,12 +40,13 @@ function checkAndMarkup(responseArr) {
 }
 
 export function cardMarkup(moviesArr) {
-    // console.log(array);
-  const markup = moviesArr.map((item) => {
-    const dateMarkup = getYear(item.release_date);
-    const properTitle = makeMovieTitle(item);
-    const properGenre = getProperGenre(item.genre_ids);
-        return `<li class="grid-movie-card">
+  // console.log(array);
+  const markup = moviesArr
+    .map(item => {
+      const dateMarkup = getYear(item.release_date);
+      const properTitle = makeMovieTitle(item);
+      const properGenre = getProperGenre(item.genre_ids);
+      return `<li class="grid-movie-card">
       <a href="" class="movie-item">
       <div class="img-wrapper">
         <img
@@ -66,23 +65,23 @@ export function cardMarkup(moviesArr) {
           </ul>
         </div>
       </a>
-    </li>`
-  }).join("")
+    </li>`;
+    })
+    .join('');
   // moviesListContainer.insertAdjacentHTML("beforeend", markup)
   moviesListContainer.innerHTML = markup;
-
 }
 
 export function getYear(date) {
-  const dateArr = date.split("-");
-  return dateArr[0]
+  const dateArr = date.split('-');
+  return dateArr[0];
 }
 
 function errorIsHidden() {
-  if (!formError.classList.contains("is-hidden")) {
-    formError.classList.add("is-hidden")
+  if (!formError.classList.contains('is-hidden')) {
+    formError.classList.add('is-hidden');
   }
-  return
+  return;
 }
 
 getMovieFromStorageByID(5)

@@ -1,7 +1,4 @@
-
-    
 // картка контейнер
-
 <li class="grid-movie-card">
       <a href="" class="movie-item">
       <div class="img-wrapper">
@@ -22,6 +19,4 @@
         </div>
       </a>
     </li>
-
-
 
