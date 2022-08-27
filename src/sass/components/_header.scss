@@ -42,18 +42,15 @@
 
 .header__background-home {
   background-image: url(../img/background-mobile.jpg);
-  opacity: 0.9;
   background-color: #000;
 
   @media screen and (min-width: 768px) {
     background-image: url(../img/background-tab.jpg);
-    opacity: 0.9;
     background-color: #000;
   }
 
   @media screen and (min-width: 1024px) {
     background-image: url(../img/background-desc.jpg);
-    opacity: 0.9;
     background-color: #000;
   }
 }
