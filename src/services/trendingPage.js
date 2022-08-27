@@ -27,20 +27,24 @@ function createTrendingCard(moviesArray) {
   const properGenre = getProperGenre(moviesArray.genre_ids);
   console.log(properGenre);
   return `<li class="grid-movie-card">
-  <a href="" class="movie-item">
-    <img
-      class="movie-img"
-      src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
-      alt="${properTitle}"
-    />
-  </a>
-  <div class="movie-info">
-    <h3 class="movie-title">${properTitle}</h3>
-    <p class="movie-genre">
-      ${properGenre} | ${properDate}
-    </p>
-  </div>
-</li>`;
+      <a href="" class="movie-item">
+      <div class="img-wrapper">
+        <img
+          class="movie-img"
+          src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
+          alt="${properTitle}"
+          loading="lazy"
+        />
+        </div>
+        <div class="movie-info">
+          <h3 class="movie-title">${properTitle}</h3>
+          <ul class="thumb">
+            <li class="movie-genre">${properGenre}</li>
+            <li class="movie-date">| ${properDate}</li>
+          </ul>
+        </div>
+      </a>
+    </li>`;
 }
 
 function generateTrendingMoveisMarkup(trendingArray) {
