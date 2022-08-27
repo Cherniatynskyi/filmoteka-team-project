@@ -8,12 +8,12 @@ const getAllGenres = localStorage.getItem('genres');
 const allGenras = JSON.parse(getAllGenres);
 // console.log(allGenras);
 
-const trendingMoviesContainer = document.querySelector('.container');
+const trendingMoviesContainer = document.querySelector('.movie-grid-list');
 console.log(trendingMoviesContainer);
 
 async function getTrending() {
   const trendingArray = await getMovies('trending/movie/day', null, 1);
-  // console.log(trendingArray);
+  console.log(trendingArray);
   const trendingLog = trendingArray.data.results;
   renderTrendingMovies(trendingLog);
   // console.log(trendingLog);
@@ -30,7 +30,7 @@ function createTrendingCard(moviesArray) {
   <a href="" class="movie-item">
     <img
       class="movie-img"
-      src="https://image.tmdb.org/t/p/w500${moviesArray.backdrop_path}"
+      src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
       alt="${properTitle}"
     />
   </a>
@@ -84,4 +84,4 @@ function getProperGenre(idArray) {
   return correctGenres.join();
 }
 
-getTrending('');
+getTrending();
