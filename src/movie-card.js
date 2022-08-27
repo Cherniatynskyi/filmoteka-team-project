@@ -4,18 +4,20 @@
 
 <li class="grid-movie-card">
       <a href="" class="movie-item">
+      <div class="img-wrapper">
         <img
           class="movie-img"
-          src="./img/Rectangle 5.jpg"
-          alt="GREYHOUND"
+          src="http://image.tmdb.org/t/p/w500${item.poster_path}"
+          alt="${item.title}"
           loading="lazy"
         />
+        </div>
         <div class="movie-info">
-          <h3 class="movie-title">GREYHOUND</h3>
+          <h3 class="movie-title">${properTitle}</h3>
           <ul class="thumb">
-            <li class="movie-genre">Drama, Action</li>
-            <li class="movie-date">| 2020</li>
-            <li class="movie-rating">10.0</li>
+            <li class="movie-genre">${properGenre}</li>
+            <li class="movie-date">| ${dateMarkup}</li>
+            <li class="movie-rating">${item.vote_average}</li>
           </ul>
         </div>
       </a>
