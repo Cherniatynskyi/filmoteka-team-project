@@ -1,11 +1,7 @@
-import { getMovies } from "./services/getMovies";
-// import { renderTrendingMovies } from "./services/trendingPage";
 
 const element = document.querySelector(".pagination ul");
-let totalPages = 10;
+let totalPages = 21;
 let page = 1;
-// let currentPage = 1;
-// let searchQuery = '';
 
 element.innerHTML = createPagination(totalPages, page);
 function createPagination(totalPages, page){
@@ -60,14 +56,3 @@ function createPagination(totalPages, page){
   element.innerHTML = liTag; 
   return liTag; 
 }
-
-// element.addEventListener('click', clickNext);
-
-// async function clickNext() {
-//   currentPage += 1;
-//   const response = await getMovies(searchQuery, currentPage);
-//   renderTrendingMovies(response.hits);
-//   totalPages += response.hits.length;
-
-
-// }
