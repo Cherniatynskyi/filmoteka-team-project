@@ -1,6 +1,7 @@
 const axios = require('axios').default;
 import { getMovies, API_URL, API_KEY } from './getMovies';
 import { makeMovieTitle, getProperGenre } from './trendingPage';
+import { addMoviesInStorage, getMovieFromStorageByID } from './addFindMovieInStorage';
 
 const filmSearch = document.querySelector('.film-search');
 const moviesListContainer = document.querySelector('.movie-grid-list');
@@ -30,11 +31,12 @@ export function clearGalleryList(response) {
 
 function checkAndMarkup(responseArr) {
   if (responseArr.data.results.length === 0) {
-    formError.classList.remove('is-hidden');
-    return;
-  } else {
+      formError.classList.remove("is-hidden")
+      return
+    } else {
     cardMarkup(responseArr.data.results);
-  }
+    addMoviesInStorage(responseArr.data.results);
+    }
 }
 
 export function cardMarkup(moviesArr) {
@@ -81,3 +83,5 @@ function errorIsHidden() {
   }
   return;
 }
+
+getMovieFromStorageByID(5)
