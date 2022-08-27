@@ -60,14 +60,14 @@ function makeMovieDate(date) {
   return fitDate;
 }
 
-function makeMovieTitle(trendingMovie) {
+export function makeMovieTitle(trendingMovie) {
   if (trendingMovie.hasOwnProperty('title')) {
     return trendingMovie.title;
   }
   return trendingMovie.name;
 }
 
-function getProperGenre(idArray) {
+export function getProperGenre(idArray) {
   const correctGenres = [];
   for (let i = 0; i < idArray.length; i += 1) {
     // console.log(idArray[i]);
