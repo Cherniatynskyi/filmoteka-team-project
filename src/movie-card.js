@@ -1,18 +1,20 @@
-// ul для карток, на най стилі, можливо треба буде перенести на інший тег
-        /* <ul class="gallery">
 
-</ul> */
     
 // картка контейнер
 
-<li class="grid-movie-card">
-    <a href="" class="movie-item">
-        <img class="movie-img" src="${}" alt="${}" />
-    </a>
-    <div class="movie-info">
+<li class="movie-card">
+      <a href="" class="movie-item">
+        <img class="movie-img" src="${}" alt="${}" loading="lazy" />
+      </a>
+      <div class="movie-info">
         <h3 class="movie-title">${ }</h3>
-        <p class="movie-genre">${ } | ${ }</p>
-    </div>
+        <ul class="thumb">
+            <li class="movie-genre">${ }</li>
+            <li class="movie-date">| ${ }</li>
+            <li class="movie-rating visually-hidden">${ }</li>
+        </ul>
+      </div>
 </li>
+
 
 
