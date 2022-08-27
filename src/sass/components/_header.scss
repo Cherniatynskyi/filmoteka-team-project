@@ -21,7 +21,19 @@
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: center;
+  // justify-content: center;
+
+  justify-content: space-between;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
 .nav-logo {
@@ -32,13 +44,13 @@
   font-size: 30px;
   color: $second-text-color;
 
-  @media screen and (min-width: 768px) {
-    margin-right: 387px;
-  }
+  // @media screen and (min-width: 768px) {
+  //   margin-right: 387px;
+  // }
 
-  @media screen and (min-width: 1280px) {
-    margin-right: 898px;
-  }
+  // @media screen and (min-width: 1280px) {
+  //   margin-right: 898px;
+  // }
 }
 
 .nav-logo__icon {
@@ -76,7 +88,26 @@
   }
 }
 
+.header__background-myLibrary {
+  background-image: url(../img/background-mobile-library.jpg);
+  background-color: #000;
+
+  @media screen and (min-width: 768px) {
+    background-image: url(../img/background-tab-library.jpg);
+    background-color: #000;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../img/background-desc-library.jpg);
+    background-color: #000;
+  }
+}
+
 //* Разметка кнопок хедера
+
+.nav-buttons {
+  display: flex;
+}
 
 .nav-btn {
   position: relative;
