@@ -9,7 +9,6 @@ const API_KEY = '144c01915625ec70297b77a615cc2ea7';
 //get full info on ID: searchOption='movie/movieID', getOption=null;
 // page = Number (default must be 1)
 
-
 export const getMovies = async (searchOption, getOption, page) => {
   try {
     const response = await axios.get(
