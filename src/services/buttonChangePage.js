@@ -16,13 +16,13 @@
     refs.btnPageHome.classList.add('current');
     refs.btnPageLibrary.classList.remove('current');
     refs.header.classList.add('header__background-home');
-    refs.header.classList.remove('header__background-myLibrary');
+    refs.header.classList.remove('header__background-library');
   }
 
   function togglePageLibrary() {
     refs.btnPageLibrary.classList.add('current');
     refs.btnPageHome.classList.remove('current');
-    refs.header.classList.add('header__background-myLibrary');
+    refs.header.classList.add('header__background-library');
     refs.header.classList.remove('header__background-home');
   }
 })();
