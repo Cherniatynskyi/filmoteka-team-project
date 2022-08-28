@@ -17,6 +17,10 @@
   // }
 }
 
+.library {
+  padding-bottom: 142px;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -88,7 +92,7 @@
   }
 }
 
-.header__background-myLibrary {
+.header__background-library {
   background-image: url(../img/background-mobile-library.jpg);
   background-color: #000;
 
@@ -231,3 +235,52 @@
   line-height: 16px;
   color: var(--add-color);
 }
+
+//* Разметка кнопок библиотеки
+
+.library-buttons {
+  display: inline-flex;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.btn {
+  position: relative;
+  // cursor: pointer;
+  width: 130px;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  // font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #fff;
+
+  &:hover,
+  &:focus {
+    background-color: #ff6b08;
+    border: 1px solid transparent;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 152px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 148px;
+    padding-top: 13px;
+    padding-bottom: 11px;
+  }
+}
+
+.btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+// .current__library-button {
+// }
