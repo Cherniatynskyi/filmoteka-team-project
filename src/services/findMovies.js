@@ -105,4 +105,3 @@ function errorIsHidden() {
   return;
 }
 
-getMovieFromStorageByID(5)
