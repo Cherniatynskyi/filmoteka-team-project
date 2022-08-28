@@ -1,22 +1,55 @@
 .container {
+<<<<<<< Updated upstream
     width: 320px;
+=======
+<<<<<<< HEAD
+    max-width: 320px;
+=======
+    width: 320px;
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
     padding-left: 20px;
     padding-right: 20px;
     margin-left: auto;
     margin-right: auto;
     
     @media screen and (min-width: 768px) and (max-width: 1279px) {
+<<<<<<< Updated upstream
         width: 768px;
+=======
+<<<<<<< HEAD
+        max-width: 768px;
+=======
+        width: 768px;
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
         padding-left: 32px;
         padding-right: 32px;
     }
     @media screen and (min-width: 1280px) {  
+<<<<<<< Updated upstream
         width: 1280px;
+=======
+<<<<<<< HEAD
+        max-width: 1280px;
+        padding-left: 32px;
+        padding-right: 32px;
+=======
+        width: 1280px;
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
         // border: 1px solid red;
     }
 
 };
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
 .movie-grid-list {
     padding-top: 20px;
     padding-bottom: 40px;
@@ -31,23 +64,53 @@
             grid-template-rows: auto;
             column-gap: 32px;
             row-gap: 32px;
+<<<<<<< Updated upstream
             justify-items: center;
             align-items: center;
+=======
+<<<<<<< HEAD
+            justify-content: center;
+            // align-items: center;
+=======
+            justify-items: center;
+            align-items: center;
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
         }
     @media screen and (min-width: 1280px) {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             column-gap: 16px;
             row-gap: 32px;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            justify-content: center;
+            // align-items: center;
+=======
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
     }
 };
 
 .grid-movie-card {
     margin-bottom: 20px;
     display: block;
+<<<<<<< Updated upstream
     width: 280px;
     height: 438px;
     background-color: rgb(90, 193, 49);
+=======
+<<<<<<< HEAD
+    width: calc(100vw - 2 * 20px);
+    max-width: 280px;
+    // border: 1px solid red;
+=======
+    width: 280px;
+    height: 438px;
+    background-color: rgb(90, 193, 49);
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
 
     &:last-child {
         margin-bottom: 0px;
@@ -56,18 +119,73 @@
         @media screen and (min-width: 768px) and (max-width: 1279px) {
                 margin-bottom: 0;
                 display: block;
+<<<<<<< Updated upstream
                 width: 336px;
                 height: 495px;
                 background-color: rgb(90, 193, 49);
+=======
+<<<<<<< HEAD
+        width: calc(100vw / 2 - 2 * 25px);
+                max-width: 336px;
+                // max-height: 495px;
+=======
+                width: 336px;
+                height: 495px;
+                background-color: rgb(90, 193, 49);
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
         }
     
         @media screen and (min-width: 1280px) {
                 margin-bottom: 0;
                 display: block;
                 // якщо тут ставлю фіксацію на ширину - справа є прогалина
+<<<<<<< Updated upstream
                 width: 100%;
                 height: 634px;
                 background-color: rgb(90, 193, 49);
         }
 }
 
+=======
+<<<<<<< HEAD
+                width: calc(100vw / 3 - 2 * 19px);
+                max-width: 394px;
+        }
+}
+
+
+
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-items: center;
+
+    margin: -20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: 768px) {
+        margin: -16px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin: -8px;
+
+    }
+}
+=======
+                width: 100%;
+                height: 634px;
+                background-color: rgb(90, 193, 49);
+        }
+}
+
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes

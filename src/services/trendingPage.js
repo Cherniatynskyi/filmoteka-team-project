@@ -11,7 +11,11 @@ const allGenras = JSON.parse(getAllGenres);
 const trendingMoviesContainer = document.querySelector('.movie-grid-list');
 console.log(trendingMoviesContainer);
 
+<<<<<<< HEAD
+ export async function getTrending() {
+=======
 async function getTrending() {
+>>>>>>> origin/pagination
   const trendingArray = await getMovies('trending/movie/day', null, 1);
   console.log(trendingArray);
   const trendingLog = trendingArray.data.results;
@@ -27,6 +31,26 @@ function createTrendingCard(moviesArray) {
   const properGenre = getProperGenre(moviesArray.genre_ids);
   console.log(properGenre);
   return `<li class="grid-movie-card">
+<<<<<<< HEAD
+      <a href="" class="movie-item">
+      <div class="img-wrapper">
+        <img
+          class="movie-img"
+          src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
+          alt="${properTitle}"
+          loading="lazy"
+        />
+        </div>
+        <div class="movie-info">
+          <h3 class="movie-title">${properTitle}</h3>
+          <ul class="thumb">
+            <li class="movie-genre">${properGenre}</li>
+            <li class="movie-date">| ${properDate}</li>
+          </ul>
+        </div>
+      </a>
+    </li>`;
+=======
   <a href="" class="movie-item">
     <img
       class="movie-img"
@@ -41,6 +65,7 @@ function createTrendingCard(moviesArray) {
     </p>
   </div>
 </li>`;
+>>>>>>> origin/pagination
 }
 
 function generateTrendingMoveisMarkup(trendingArray) {
@@ -50,7 +75,15 @@ function generateTrendingMoveisMarkup(trendingArray) {
   );
 }
 
+<<<<<<< Updated upstream
  function renderTrendingMovies(trendingArray) {
+=======
+<<<<<<< HEAD
+function renderTrendingMovies(trendingArray) {
+=======
+ function renderTrendingMovies(trendingArray) {
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
   const trendingMovies = generateTrendingMoveisMarkup(trendingArray);
   trendingMoviesContainer.insertAdjacentHTML('beforeend', trendingMovies);
 }
@@ -60,14 +93,22 @@ function makeMovieDate(date) {
   return fitDate;
 }
 
+<<<<<<< HEAD
+export function makeMovieTitle(trendingMovie) {
+=======
 function makeMovieTitle(trendingMovie) {
+>>>>>>> origin/pagination
   if (trendingMovie.hasOwnProperty('title')) {
     return trendingMovie.title;
   }
   return trendingMovie.name;
 }
 
+<<<<<<< HEAD
+export function getProperGenre(idArray) {
+=======
 function getProperGenre(idArray) {
+>>>>>>> origin/pagination
   const correctGenres = [];
   for (let i = 0; i < idArray.length; i += 1) {
     // console.log(idArray[i]);

@@ -1,3 +1,15 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+// const backButton = document.querySelector('#backButton');
+// backButton.classList.add('hide');
+// const nextButton = document.querySelector('#nextButton');
+// let paginationPageNumber = document.querySelector('#paginationPageNumber');
+
+// let page = 1;
+// getOption = " ";
+=======
+>>>>>>> Stashed changes
 import { getMovies } from "./services/getMovies";
 // import { renderTrendingMovies } from "./services/trendingPage";
 
@@ -6,6 +18,7 @@ let totalPages = 10;
 let page = 1;
 // let currentPage = 1;
 // let searchQuery = '';
+<<<<<<< Updated upstream
 
 element.innerHTML = createPagination(totalPages, page);
 function createPagination(totalPages, page){
@@ -23,6 +36,40 @@ function createPagination(totalPages, page){
     }
   }
 
+=======
+>>>>>>> origin/pagination
+
+
+<<<<<<< HEAD
+
+// function paginationNavigation(e) {
+
+//   page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
+//   if (e.target.id === "backButton")
+//   {
+//     page = page - 1;
+//     paginationPageNumber.textContent = page;
+//     if (getOption === '') {
+//       getMovies();
+//     }
+//     else {
+//       fetchFilms();
+//     }
+//   } else {
+//     page = page + 1; paginationPageNumber.textContent = page;
+//     if (getOption === '')
+//     {
+//       getMovies();;
+//     } else {
+//       getMovies()
+//     }
+//   }
+//   page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
+// }
+// backButton.addEventListener('click', paginationNavigation);
+//     nextButton.addEventListener('click', paginationNavigation);
+=======
+>>>>>>> Stashed changes
   if (page == totalPages) {
     beforePage = beforePage - 2;
   } else if (page == totalPages - 1) {
@@ -71,3 +118,7 @@ function createPagination(totalPages, page){
 
 
 // }
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/pagination
+>>>>>>> Stashed changes
