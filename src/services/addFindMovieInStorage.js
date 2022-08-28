@@ -5,12 +5,12 @@ export function addMoviesInStorage(moviesArray) {
 }
 
 
-export function getMovieFromStorageByID(id) {
-    const getData = JSON.parse(localStorage.getItem(KEY));
-    getData.map((item) => {
-        if (item.id === id) {
-            console.log(id);
-        }
-    })
+// export function getMovieFromStorageByID(id) {
+//     const getData = JSON.parse(localStorage.getItem(KEY));
+//     getData.map((item) => {
+//         if (item.id === id) {
+//             console.log(id);
+//         }
+//     })
     
-}
+// }

@@ -40,21 +40,20 @@ function checkAndMarkup(responseArr) {
 }
 
 export function cardMarkup(moviesArr) {
-  // console.log(array);
+  const src = "http://image.tmdb.org/t/p/w500";
   const markup = moviesArr
     .map(item => {
       const dateMarkup = getYear(item.release_date);
       const properTitle = makeMovieTitle(item);
       const properGenre = getProperGenre(item.genre_ids);
-      return `<li class="grid-movie-card">
+      if (item.poster_path) {
+        return `<li class="grid-movie-card">
       <a href="" class="movie-item">
       <div class="img-wrapper">
-        <img
-          class="movie-img"
-          src="http://image.tmdb.org/t/p/w500${item.poster_path}"
-          alt="${item.title}"
-          loading="lazy"
-        />
+        <img class="movie-img"
+        src="http://image.tmdb.org/t/p/w500${item.poster_path}" 
+        alt="${item.title}"
+        loading="lazy" />
         </div>
         <div class="movie-info">
           <h3 class="movie-title">${properTitle}</h3>
@@ -66,11 +65,33 @@ export function cardMarkup(moviesArr) {
         </div>
       </a>
     </li>`;
+      } else {
+        return `<li class="grid-movie-card">
+      <a href="" class="movie-item">
+      <div class="img-wrapper img-placeholder">
+        </div>
+        <div class="movie-info">
+          <h3 class="movie-title">${properTitle}</h3>
+          <ul class="thumb">
+            <li class="movie-genre">${properGenre}</li>
+            <li class="movie-date">| ${dateMarkup}</li>
+            <li class="movie-rating">${item.vote_average}</li>
+          </ul>
+        </div>
+      </a>
+    </li>`;
+      }
     })
     .join('');
   // moviesListContainer.insertAdjacentHTML("beforeend", markup)
   moviesListContainer.innerHTML = markup;
 }
+// src="http://image.tmdb.org/t/p/w500${item.poster_path}"
+
+// function checkImage(path) {
+//   const img = '<img class="movie-img" src="http://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title}" loading="lazy" />'
+//   return path ? img : ""; 
+// }
 
 export function getYear(date) {
   const dateArr = date.split('-');
@@ -84,4 +105,3 @@ function errorIsHidden() {
   return;
 }
 
-getMovieFromStorageByID(5)
