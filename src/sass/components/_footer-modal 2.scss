@@ -1,0 +1,138 @@
+.backdrop {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: opacity $main-effects-option,
+        visibility $main-effects-option;
+
+    &.is-hidden .modal {
+        transform: scale(0.5) rotate(180deg);
+    }
+}
+
+.modal {
+    width: calc(100% - 30px);
+    max-width: 550px;
+    max-height: 750px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: scale(1) translate(-50%, -50%);
+    transition: transform $main-effects-option;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    @media screen and (min-width: 1000px) {
+        max-width: 1000px;
+        min-height: 850px;
+        overflow: hidden;
+    }
+    @media screen and (max-width: 400px) {
+        width: 100%;
+        height: 100%;
+        padding: 30 10 30 10
+    }
+}
+
+.modal-close-btn {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover,
+    &:focus .close-icon {
+        fill: $accent-color
+    }
+}
+
+.close-icon {
+    transition: fill $main-effects-option;
+    position: absolute;
+    left: 4.5;
+}
+
+.team-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 10px;
+}
+
+.team-list-item{
+    border: 1.5px solid rgb(116, 115, 115);
+    border-radius: 4px;
+    display: flex;
+    margin: 10px;
+    width: 380px;
+    min-width: 320px;
+}
+
+.team-list-item-container{
+    display: flex;
+    justify-content: center;
+}
+
+.team-list-item-text-container{
+    padding: 10px;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.team-list-item-name{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.role{
+    font-size: 15px;
+    color: $accent-color;
+    display: inline-block;
+}
+
+.role-container{
+    background-color: $accent-color;
+    display: inline-block;
+    border-radius: 8px;
+    width: 110px;
+    margin-top: 5px;
+}
+
+.special{
+    color: white;
+    padding: 6px;
+}
+
+.lead{
+    width: 91px;
+}
+
+.no-scroll {
+    overflow-y: hidden;
+    position: fixed;
+    width: 100%;
+}
