@@ -48,7 +48,7 @@ export function cardMarkup(moviesArr) {
       const properGenre = getProperGenre(item.genre_ids);
       if (item.poster_path) {
         return `<li class="grid-movie-card">
-      <a href="" class="movie-item">
+      <div class="movie-item">
       <div class="img-wrapper">
         <img class="movie-img"
         src="http://image.tmdb.org/t/p/w500${item.poster_path}" 
@@ -63,11 +63,11 @@ export function cardMarkup(moviesArr) {
             <li class="movie-rating">${item.vote_average}</li>
           </ul>
         </div>
-      </a>
+      </div>
     </li>`;
       } else {
         return `<li class="grid-movie-card">
-      <a href="" class="movie-item">
+      <div class="movie-item">
       <div class="img-wrapper img-placeholder">
         </div>
         <div class="movie-info">
@@ -78,7 +78,7 @@ export function cardMarkup(moviesArr) {
             <li class="movie-rating">${item.vote_average}</li>
           </ul>
         </div>
-      </a>
+      </div>
     </li>`;
       }
     })
@@ -104,4 +104,3 @@ function errorIsHidden() {
   }
   return;
 }
-

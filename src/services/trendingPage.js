@@ -27,7 +27,7 @@ function createTrendingCard(moviesArray) {
   const properGenre = getProperGenre(moviesArray.genre_ids);
   console.log(properGenre);
   return `<li class="grid-movie-card">
-      <a href="" class="movie-item">
+      <div class="movie-item">
       <div class="img-wrapper">
         <img
           class="movie-img"
@@ -43,7 +43,7 @@ function createTrendingCard(moviesArray) {
             <li class="movie-date">| ${properDate}</li>
           </ul>
         </div>
-      </a>
+      </div>
     </li>`;
 }
 
