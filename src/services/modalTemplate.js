@@ -48,16 +48,13 @@ closeModalCard.addEventListener('click', onCloseModalCard);
 
 function onOpenModalCard(event) {
   if (!event.target.classList.contains('movie-img')){
-    console.log(event.target.classList)
     return;
   }
-  console.log(event.target.classList)
   modalCardCont.classList.remove('no-activ');
   document.body.classList.add('no-scroll');
 }
 
 function onCloseModalCard(event) {
-  console.log(event.target.classList)
   modalCardCont.classList.add('no-activ');
   document.body.classList.remove('no-scroll');
 }
