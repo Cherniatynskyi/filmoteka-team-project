@@ -3,6 +3,14 @@
     height: 100%;
     border-radius: 5px;
 }
+.img-placeholder {
+    background-image: url(../img/placeholder.jpeg);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(245,245,245);
+    border-radius: 5px;
+}
 
 .img-wrapper {
     width: 280px;
