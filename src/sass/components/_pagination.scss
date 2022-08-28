@@ -1,51 +1,43 @@
-.pagination{
+
+.paginationsContainer {
+    width: 100%;
     display: flex;
     justify-content: center;
+<<<<<<< Updated upstream
 }
 .pagination ul {
     display: flex;
     background: $second-text-color;
     
+=======
+    align-items: center;
+>>>>>>> Stashed changes
 }
 
-.pagination li {
-    font-style: normal;
-    line-height: 16px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 13px 11px;
-    margin-right: 3px;
-    height: 40px;
-        width: 40px;
-}
-
-// .pagination ul li.numb {
-    
-// }
-
-.pagination ul li.btn {
+.backButton,
+.nextButton {
+  
 background-color: $background-light-grey;
- 
-   
-      
+height: 40px;
+            width: 40px;
+  
+    color: black;
+    padding: 0.5rem;
+    cursor: pointer;
 }
 
-.pagination ul li.dots {
-    
-    cursor: default;
-    padding: 10px  11px 15px ;
-    @media screen and (max-width: 560px) {
-       display: none;
-        }
+.backButton:hover,
+.nextButton:hover {
+    background-color: $accent-color;
+    color: white;
+
 }
 
-.pagination ul li.active,
-.pagination ul li.btn:hover,
-.pagination ul li.numb:hover {
-
-    background: $accent-color;
+.paginationPageNumber {
    
-    color: #fff;
+    padding: 0.5rem;
+    margin: 0 1rem;
+}
+.hide {
+    display: none;
 }
