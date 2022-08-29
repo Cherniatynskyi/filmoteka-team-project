@@ -1,5 +1,6 @@
 import { getMovies } from './getMovies';
 import { addMoviesInStorage } from './addFindMovieInStorage';
+import { checkAndMarkup, cardMarkup } from './findMovies';
 
 getMovies('genre/movie/list', null, 1).then(response => {
   localStorage.setItem('genres', JSON.stringify(response.data.genres));
@@ -7,15 +8,23 @@ getMovies('genre/movie/list', null, 1).then(response => {
 
 const getAllGenres = localStorage.getItem('genres');
 const allGenras = JSON.parse(getAllGenres);
+const nul = null;
 
 const trendingMoviesContainer = document.querySelector('.movie-grid-list');
 
 async function getTrending() {
-  const trendingArray = await getMovies('trending/movie/day', null, 1);
+  const trendingArray = await getMovies('trending/movie/day', nul, 1);
+
 
   const trendingLog = trendingArray.data.results;
   addMoviesInStorage(trendingLog);
   renderTrendingMovies(trendingLog);
+
+  backButton.addEventListener('click', paginationNavigation1);
+  nextButton.addEventListener('click', paginationNavigation1);
+
+  // backButton.removeEventListener('click', paginationNavigation)
+  // nextButton.removeEventListener('click', paginationNavigation);
 }
 
 function createTrendingCard(moviesArray) {
@@ -52,7 +61,9 @@ function generateTrendingMoveisMarkup(trendingArray) {
 
 function renderTrendingMovies(trendingArray) {
   const trendingMovies = generateTrendingMoveisMarkup(trendingArray);
-  trendingMoviesContainer.insertAdjacentHTML('beforeend', trendingMovies);
+  // trendingMoviesContainer.insertAdjacentHTML('beforeend', trendingMovies);
+  trendingMoviesContainer.innerHTML = trendingMovies;
+
 }
 
 function makeMovieDate(date) {
@@ -83,3 +94,39 @@ export function getProperGenre(idArray) {
 }
 
 getTrending();
+
+
+const backButton = document.querySelector('#backButton');
+backButton.classList.add('hide');
+const nextButton = document.querySelector('#nextButton');
+let paginationPageNumber = document.querySelector('#paginationPageNumber');
+
+let page = 1;
+
+
+
+export function paginationNavigation1(e) {
+    page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
+  if (e.target.id === "backButton") {
+    page = page - 1;
+      paginationPageNumber.textContent = page;
+      startPaginationTranding(page)
+  } else {
+    page = page + 1;
+      paginationPageNumber.textContent = page;
+      startPaginationTranding(page)
+    
+  }
+   page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
+
+}
+
+
+async function startPaginationTranding(page) {
+  try {
+      const responseArr = await getMovies('trending/movie/day', nul, page);
+    renderTrendingMovies(responseArr.data.results)
+  } catch (error) {
+    console.error(error);
+  }
+}

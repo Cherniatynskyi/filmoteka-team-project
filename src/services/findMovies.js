@@ -1,21 +1,33 @@
 const axios = require('axios').default;
 import { getMovies, API_URL, API_KEY } from './getMovies';
-import { makeMovieTitle, getProperGenre } from './trendingPage';
-import { addMoviesInStorage, getMovieFromStorageByID } from './addFindMovieInStorage';
+import { makeMovieTitle, getProperGenre, paginationNavigation1 } from './trendingPage';
+import { addMoviesInStorage } from './addFindMovieInStorage';
 
-const filmSearch = document.querySelector('.film-search');
+const filmSearch = document.querySelector('.form');
 const moviesListContainer = document.querySelector('.movie-grid-list');
 const formError = document.querySelector('.form__error');
 
-filmSearch, addEventListener('submit', findMovies);
+
+form.addEventListener("submit", findMovies)
+let request
+let page = 1;
 
 async function findMovies(e) {
+  paginationPageNumber.textContent = `${page}`;
+  backButton.classList.add('hide');
   e.preventDefault();
-  let request = e.target.firstElementChild.value;
+  request = e.target.firstElementChild.value;
   try {
     const responseArr = await getMovies('search/movie', request, 1);
     errorIsHidden();
     checkAndMarkup(responseArr);
+
+    backButton.removeEventListener('click', paginationNavigation1)
+    nextButton.removeEventListener('click', paginationNavigation1);
+
+    backButton.addEventListener('click', paginationNavigation);
+    nextButton.addEventListener('click', paginationNavigation);
+
   } catch (error) {
     console.error(error);
   }
@@ -29,7 +41,7 @@ export function clearGalleryList(response) {
   return 'No films';
 }
 
-function checkAndMarkup(responseArr) {
+export function checkAndMarkup(responseArr) {
   if (responseArr.data.results.length === 0) {
       formError.classList.remove("is-hidden")
       return
@@ -40,7 +52,6 @@ function checkAndMarkup(responseArr) {
 }
 
 export function cardMarkup(moviesArr) {
-  const src = "http://image.tmdb.org/t/p/w500";
   const markup = moviesArr
     .map(item => {
       const dateMarkup = getYear(item.release_date);
@@ -93,14 +104,56 @@ export function cardMarkup(moviesArr) {
 //   return path ? img : ""; 
 // }
 
-export function getYear(date) {
+function getYear(date) {
   const dateArr = date.split('-');
   return dateArr[0];
 }
 
-function errorIsHidden() {
+export function errorIsHidden() {
   if (!formError.classList.contains('is-hidden')) {
     formError.classList.add('is-hidden');
   }
   return;
+}
+
+
+const backButton = document.querySelector('#backButton');
+backButton.classList.add('hide');
+const nextButton = document.querySelector('#nextButton');
+let paginationPageNumber = document.querySelector('#paginationPageNumber');
+
+
+
+
+
+
+function paginationNavigation(e) {
+    page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
+  if (e.target.id === "backButton") {
+    page = page - 1;
+      paginationPageNumber.textContent = page;
+      startPagination(page)
+  } else {
+    page = page + 1;
+      paginationPageNumber.textContent = page;
+      startPagination(page)
+    
+  }
+   page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
+
+}
+
+
+
+// pagination.addEventListener("click", startPagination);
+
+async function startPagination(page) {
+  try {
+      const responseArr = await getMovies('search/movie', request, page);
+      console.log(responseArr);
+    errorIsHidden();
+    checkAndMarkup(responseArr);
+  } catch (error) {
+    console.error(error);
+  }
 }
