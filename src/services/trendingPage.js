@@ -31,18 +31,17 @@ function createTrendingCard(moviesArray) {
   const properDate = makeMovieDate(moviesArray.release_date);
   const properTitle = makeMovieTitle(moviesArray);
   const properGenre = getProperGenre(moviesArray.genre_ids);
-  return `<li class="grid-movie-card">
-      <div class="movie-item">
+  return `<li class="grid-movie-card"  id="${moviesArray.id}">
+      <div class="movie-item ">
       <div class="img-wrapper">
         <img
-          id=${moviesArray.id} 
           class="movie-img"
           src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
           alt="${properTitle}"
           loading="lazy"
         />
         </div>
-        <div class="movie-info">
+        <div class="movie-info data-open">
           <h3 class="movie-title">${properTitle}</h3>
           <ul class="thumb">
             <li class="movie-genre">${properGenre}</li>

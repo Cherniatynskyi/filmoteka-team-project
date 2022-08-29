@@ -47,13 +47,23 @@ openModalCard.addEventListener('click', onOpenModalCard);
 closeModalCard.addEventListener('click', onCloseModalCard);
 
 function onOpenModalCard(event) {
-  const movieId = event.target.id;
-  console.log(movieId);
-  if (!event.target.classList.contains('movie-img')){
-    return;
-  }
-  modalCardCont.classList.remove('no-activ');
-  document.body.classList.add('no-scroll');
+  // debugger
+  // console.log(event.target.attributes.id.value);
+  
+  if (event.target.classList.contains('grid-movie-card')) {
+    //movie-img
+    const filmID = event.target.attributes.id.value;
+    console.log(filmID);
+
+    modalCardCont.classList.remove('no-activ');
+    document.body.classList.add('no-scroll');
+
+  } 
+  return
+    // modalCardCont.classList.remove('no-activ');
+    // document.body.classList.add('no-scroll');
+  // modalCardCont.classList.remove('no-activ');
+  // document.body.classList.add('no-scroll');
 }
 
 function onCloseModalCard(event) {

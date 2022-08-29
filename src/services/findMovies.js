@@ -58,7 +58,7 @@ export function cardMarkup(moviesArr) {
       const properTitle = makeMovieTitle(item);
       const properGenre = getProperGenre(item.genre_ids);
       if (item.poster_path) {
-        return `<li class="grid-movie-card">
+        return `<li class="grid-movie-card" id="${item.id}">
       <div class="movie-item">
       <div class="img-wrapper">
         <img class="movie-img"
@@ -77,7 +77,7 @@ export function cardMarkup(moviesArr) {
       </div>
     </li>`;
       } else {
-        return `<li class="grid-movie-card">
+        return `<li class="grid-movie-card" id="${item.id}>
       <div class="movie-item">
       <div class="img-wrapper img-placeholder">
         </div>
@@ -94,15 +94,9 @@ export function cardMarkup(moviesArr) {
       }
     })
     .join('');
-  // moviesListContainer.insertAdjacentHTML("beforeend", markup)
   moviesListContainer.innerHTML = markup;
 }
-// src="http://image.tmdb.org/t/p/w500${item.poster_path}"
 
-// function checkImage(path) {
-//   const img = '<img class="movie-img" src="http://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title}" loading="lazy" />'
-//   return path ? img : ""; 
-// }
 
 function getYear(date) {
   const dateArr = date.split('-');
