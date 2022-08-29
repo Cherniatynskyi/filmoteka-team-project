@@ -10,25 +10,31 @@ openModalCard.addEventListener('click', onOpenModalCard);
 closeModalCard.addEventListener('click', onCloseModalCard);
 modalCardCont.addEventListener('click', onBackModalDropClick);
 window.addEventListener('keydown', onEscClick);
-function onCloseModalCard(event) {
+
+
+function onCloseModalCard() {
   modalCardCont.classList.add('no-activ');
   var htmlEl = document.getElementsByTagName('HTML')[0];
   htmlEl.classList.remove('no-scroll');
+  cardContMarking.innerHTML=""
 }
+
+
 function onBackModalDropClick(evt) {
   if (!evt.target.classList.contains('card__cont')) {
     return;
   }
-  modalCardCont.classList.add('no-activ');
-  var htmlEl = document.getElementsByTagName('HTML')[0];
-  htmlEl.classList.remove('no-scroll');
+  onCloseModalCard()
 }
+
+
 function onEscClick(evt) {
   if (evt.key === 'Escape') {
     onCloseModalCard();
     backdrop.classList.add('is-hidden');
   }
 }
+
 // +++++++++++++++++++++++++++++++
 function onOpenModalCard(event) {
   if (event.target.classList.contains('grid-movie-card')) {
