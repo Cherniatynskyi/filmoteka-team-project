@@ -15,7 +15,6 @@ const trendingMoviesContainer = document.querySelector('.movie-grid-list');
 async function getTrending() {
   const trendingArray = await getMovies('trending/movie/day', nul, 1);
 
-
   const trendingLog = trendingArray.data.results;
   addMoviesInStorage(trendingLog);
   renderTrendingMovies(trendingLog);
@@ -30,8 +29,12 @@ async function getTrending() {
 function createTrendingCard(moviesArray) {
   const properDate = makeMovieDate(moviesArray.release_date);
   const properTitle = makeMovieTitle(moviesArray);
-  const properGenre = getProperGenre(moviesArray.genre_ids);
-  return `<li class="grid-movie-card"  id="${moviesArray.id}">
+  let properGenre = getProperGenre(moviesArray.genre_ids);
+  if (!properGenre) {
+    properGenre = 'No info';
+  }
+  if (moviesArray.poster_path) {
+    return `<li class="grid-movie-card"  id="${moviesArray.id}">
       <div class="movie-item ">
       <div class="img-wrapper">
         <img
@@ -50,6 +53,21 @@ function createTrendingCard(moviesArray) {
         </div>
       </div>
     </li>`;
+  } else {
+    return `<li class="grid-movie-card"  id="${moviesArray.id}">
+      <div class="movie-item ">
+      <div class="img-wrapper img-placeholder">
+        </div>
+        <div class="movie-info data-open">
+          <h3 class="movie-title">${properTitle}</h3>
+          <ul class="thumb">
+            <li class="movie-genre">${properGenre}</li>
+            <li class="movie-date">| ${properDate}</li>
+          </ul>
+        </div>
+      </div>
+    </li>`;
+  }
 }
 
 function generateTrendingMoveisMarkup(trendingArray) {
@@ -63,7 +81,6 @@ function renderTrendingMovies(trendingArray) {
   const trendingMovies = generateTrendingMoveisMarkup(trendingArray);
   // trendingMoviesContainer.insertAdjacentHTML('beforeend', trendingMovies);
   trendingMoviesContainer.innerHTML = trendingMovies;
-
 }
 
 function makeMovieDate(date) {
@@ -95,7 +112,6 @@ export function getProperGenre(idArray) {
 
 getTrending();
 
-
 const backButton = document.querySelector('#backButton');
 backButton.classList.add('hide');
 const nextButton = document.querySelector('#nextButton');
@@ -103,29 +119,28 @@ let paginationPageNumber = document.querySelector('#paginationPageNumber');
 
 let page = 1;
 
-
-
 export function paginationNavigation1(e) {
-    page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
-  if (e.target.id === "backButton") {
+  page === 1 || page < 1
+    ? backButton.classList.add('hide')
+    : backButton.classList.remove('hide');
+  if (e.target.id === 'backButton') {
     page = page - 1;
-      paginationPageNumber.textContent = page;
-      startPaginationTranding(page)
+    paginationPageNumber.textContent = page;
+    startPaginationTranding(page);
   } else {
     page = page + 1;
-      paginationPageNumber.textContent = page;
-      startPaginationTranding(page)
-    
+    paginationPageNumber.textContent = page;
+    startPaginationTranding(page);
   }
-   page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
-
+  page === 1 || page < 1
+    ? backButton.classList.add('hide')
+    : backButton.classList.remove('hide');
 }
-
 
 async function startPaginationTranding(page) {
   try {
-      const responseArr = await getMovies('trending/movie/day', nul, page);
-    renderTrendingMovies(responseArr.data.results)
+    const responseArr = await getMovies('trending/movie/day', nul, page);
+    renderTrendingMovies(responseArr.data.results);
   } catch (error) {
     console.error(error);
   }
