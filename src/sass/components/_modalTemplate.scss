@@ -33,7 +33,7 @@
     height: 558px;
     margin: auto;
     position: absolute;
-    top: 25%;
+    top: 5%;
     left: 50%;
     transform: translate(-50%);
 
@@ -52,6 +52,10 @@
         transform: translate(-50%);
         flex-direction: column;
     }
+}
+
+.card__cont-marking {
+    display: flex;
 }
 
 .card__cont-icon {
