@@ -47,6 +47,8 @@ openModalCard.addEventListener('click', onOpenModalCard);
 closeModalCard.addEventListener('click', onCloseModalCard);
 
 function onOpenModalCard(event) {
+  const movieId = event.target.id;
+  console.log(movieId);
   if (!event.target.classList.contains('movie-img')){
     return;
   }
