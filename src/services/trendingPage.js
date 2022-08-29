@@ -35,7 +35,6 @@ function createTrendingCard(moviesArray) {
       <div class="movie-item ">
       <div class="img-wrapper">
         <img
-          
           class="movie-img"
           src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
           alt="${properTitle}"
