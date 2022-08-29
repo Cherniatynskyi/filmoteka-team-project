@@ -52,9 +52,11 @@
   &:hover,
   &:focus {
     color: $accent-color;
+    transition: color $main-effects-option;
 
     & use {
       stroke: $accent-color;
+      transition: stroke $main-effects-option;
     }
   }
 }
@@ -136,6 +138,7 @@
   &:hover,
   &:focus {
     color: $accent-color;
+    transition: color $main-effects-option;
   }
 }
 
@@ -192,12 +195,15 @@
   &:hover,
   &:focus {
     color: $accent-color;
+    transition: color $main-effects-option;
 
     &::after {
       border-bottom: 1px solid $accent-color;
+      transition: border-bottom $main-effects-option;
     }
     & ::placeholder {
       color: $accent-color;
+      transition: color $main-effects-option;
     }
   }
 }
@@ -246,6 +252,7 @@
 
   &:hover {
     stroke: $accent-color;
+    transition: stroke $main-effects-option;
   }
 }
 
@@ -299,6 +306,9 @@
   &:focus {
     background-color: $accent-color;
     border: 1px solid transparent;
+
+    transition: background-color $main-effects-option,
+      border $main-effects-option;
   }
 
   @media screen and (min-width: 768px) {
