@@ -52,6 +52,7 @@
     display: block;
     width: calc(100vw - 2 * 20px);
     max-width: 280px;
+    cursor: pointer;
     // border: 1px solid red;
 
     &:last-child {
