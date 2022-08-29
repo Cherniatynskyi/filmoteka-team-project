@@ -43,12 +43,20 @@ const openModalCard = document.querySelector('[data-modalCard-open]');
 const closeModalCard = document.querySelector('[data-modalCard-close]');
 const modalCardCont = document.querySelector('[data-modalCard]');
 
-openModalCard.addEventListener('click', toggleModalCard);
-closeModalCard.addEventListener('click', toggleModalCard);
+openModalCard.addEventListener('click', onOpenModalCard);
+closeModalCard.addEventListener('click', onCloseModalCard);
 
-function toggleModalCard() {
-  modalCardCont.classList.toggle('no-activ');
-  document.body.classList.toggle('no-scroll');
+function onOpenModalCard(event) {
+  if (!event.target.classList.contains('movie-img')){
+    return;
+  }
+  modalCardCont.classList.remove('no-activ');
+  document.body.classList.add('no-scroll');
+}
+
+function onCloseModalCard(event) {
+  modalCardCont.classList.add('no-activ');
+  document.body.classList.remove('no-scroll');
 }
 // один з не працюючих варіантів достукатись до лішки
 // let list = document.querySelectorAll('.movie-grid-list li a');

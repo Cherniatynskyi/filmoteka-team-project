@@ -10,16 +10,15 @@ const getAllGenres = localStorage.getItem('genres');
 const allGenras = JSON.parse(getAllGenres);
 const nul = null;
 
-
 const trendingMoviesContainer = document.querySelector('.movie-grid-list');
 
 async function getTrending() {
   const trendingArray = await getMovies('trending/movie/day', nul, 1);
 
+
   const trendingLog = trendingArray.data.results;
   addMoviesInStorage(trendingLog);
   renderTrendingMovies(trendingLog);
-
 
   backButton.addEventListener('click', paginationNavigation1);
   nextButton.addEventListener('click', paginationNavigation1);
