@@ -315,3 +315,8 @@
 .btn:not(:last-child) {
   margin-right: 15px;
 }
+
+.current__library-button {
+  background-color: $accent-color;
+  border: 1px solid transparent;
+}
