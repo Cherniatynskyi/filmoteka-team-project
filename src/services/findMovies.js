@@ -47,7 +47,7 @@ export function checkAndMarkup(responseArr) {
       return
     } else {
     cardMarkup(responseArr.data.results);
-    addMoviesInStorage(responseArr.data.results);
+    // addMoviesInStorage(responseArr.data.results);
     }
 }
 
@@ -136,10 +136,6 @@ function paginationNavigation(e) {
    page === 1 || page < 1 ? backButton.classList.add('hide') : backButton.classList.remove('hide');
 
 }
-
-
-
-// pagination.addEventListener("click", startPagination);
 
 async function startPagination(page) {
   try {
