@@ -6,11 +6,11 @@
   background-size: cover;
 
   padding-top: 40px;
-  padding-bottom: 86px;
+  padding-bottom: 84px;
   margin-left: auto;
   margin-right: auto;
   @media screen and (max-width: 767px) {
-    padding-bottom: 96px;
+    padding-bottom: 94px;
   }
 }
 
@@ -52,19 +52,18 @@
   &:hover,
   &:focus {
     color: $accent-color;
+
+    & use {
+      stroke: $accent-color;
+    }
   }
 }
 
 .nav-logo__icon {
   width: 24px;
   height: 24px;
-  background-color: #fff;
-  // background-image: url('../img/logo.png');
-
-  &:hover,
-  &:focus {
-    color: $accent-color;
-  }
+  fill: none;
+  stroke: $second-text-color;
 
   @media screen and (min-width: 768px) {
     margin-right: 8px;
@@ -83,31 +82,31 @@
 
 .header__background-home {
   background-image: url(../img/background-mobile.jpg);
-  background-color: #000;
+  background-color: $main-text-color;
 
   @media screen and (min-width: 768px) {
     background-image: url(../img/background-tab.jpg);
-    background-color: #000;
+    background-color: $main-text-color;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(../img/background-desc.jpg);
-    background-color: #000;
+    background-color: $main-text-color;
   }
 }
 
 .header__background-library {
   background-image: url(../img/background-mobile-library.jpg);
-  background-color: #000;
+  background-color: $main-text-color;
 
   @media screen and (min-width: 768px) {
     background-image: url(../img/background-tab-library.jpg);
-    background-color: #000;
+    background-color: $main-text-color;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(../img/background-desc-library.jpg);
-    background-color: #000;
+    background-color: $main-text-color;
   }
 }
 
@@ -189,6 +188,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+
+    &::after {
+      border-bottom: 1px solid $accent-color;
+    }
+    & ::placeholder {
+      color: $accent-color;
+    }
+  }
 }
 
 .form::after {
@@ -211,25 +222,35 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
+  width: 100%;
 }
 
 .form__input::placeholder {
-  color: #ffffffbb;
+  color: $second-text-color;
 }
 
 .form__btn-submit {
-  width: 12px;
-  height: 12px;
-  color: none;
   background: none;
   outline: none;
   border: none;
-  background-image: url('../img/search.png');
+  // background-image: url('../img/search.png');
   object-fit: fill;
   cursor: pointer;
 }
 
+.form-icon {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: $second-text-color;
+
+  &:hover {
+    stroke: $accent-color;
+  }
+}
+
 .form__error {
+  position: absolute;
   margin-top: 16px;
   width: 100%;
   text-align: left;
@@ -242,7 +263,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  color: var(--add-color);
+  color: $header-accent-color;
 }
 
 //* Разметка кнопок библиотеки
@@ -266,17 +287,17 @@
   width: 130px;
   padding-top: 14px;
   padding-bottom: 12px;
-  border: 1px solid #fff;
+  border: 1px solid $second-text-color;
   border-radius: 5px;
   background-color: transparent;
   // font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  color: #fff;
+  color: $second-text-color;
 
   &:hover,
   &:focus {
-    background-color: #ff6b08;
+    background-color: $accent-color;
     border: 1px solid transparent;
   }
 
