@@ -39,6 +39,8 @@
 
 //   parentCard.classList.add('hidden');
 // }
+import { getMovieByID } from "./MovieObjectByID";
+
 const openModalCard = document.querySelector('[data-modalCard-open]');
 const closeModalCard = document.querySelector('[data-modalCard-close]');
 const modalCardCont = document.querySelector('[data-modalCard]');
@@ -51,9 +53,12 @@ function onOpenModalCard(event) {
   // console.log(event.target.attributes.id.value);
   
   if (event.target.classList.contains('grid-movie-card')) {
-    //movie-img
+    //записуємо id в змінну
     const filmID = event.target.attributes.id.value;
-    console.log(filmID);
+    //визиваємо ф-ію, що записує об'єкт фільму у змінну
+    const filmObject = getMovieByID(filmID);
+    console.log(filmObject);
+
 
     modalCardCont.classList.remove('no-activ');
     document.body.classList.add('no-scroll');
