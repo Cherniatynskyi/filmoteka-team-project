@@ -20,6 +20,10 @@
             2px 3px 5px rgba(0, 0, 0, 0.2);
         border-radius: 2px;
         background-color: white;
+    &:hover{
+        transform: translate(-1px, -4px);
+        transition: transform $main-effects-option;
+    }
 }
 
 .highlight{

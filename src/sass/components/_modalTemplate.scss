@@ -10,7 +10,8 @@
         visibility $main-effects-option;
 
     &.no-activ .card__cont-modal {
-        transform: scale(0.5) rotate(180deg);
+        transform: scale(0.5);
+        transition: fill $main-effects-option;
     }
 }
 
@@ -28,14 +29,14 @@
 .card__cont-modal {
     display: flex;
     background-color: $second-text-color;
-    ;
     width: 806px;
     height: 558px;
     margin: auto;
     position: absolute;
     top: 25%;
     left: 50%;
-    transform: translate(-50%);
+    transform: scale(1) translate(-50%, -20%);
+    transition: transform $main-effects-option;
 
     @media screen and (max-width: 1279px) {
         width: 704px;
