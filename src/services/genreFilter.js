@@ -120,7 +120,6 @@ function setGenre() {
                     selectedGenre.push(genre.id);
                 }
             }
-            console.log(selectedGenre)
             getMovies(API_URL + '&with_genres='+encodeURI(selectedGenre.join(',')))
             // highlightSelection()
         })
