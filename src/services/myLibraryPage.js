@@ -8,10 +8,12 @@ const btnAddToQueue = document.querySelector(".card__button-text");
 const btnGetToWatched = document.querySelector('[data-action ="watched"]');
 const btnGetToQueue = document.querySelector('[data-action ="queue"]');
 
+
+
 // btnAddToWatched.addEventListener("click", addWatchedMoviesInStorage);
 // btnAddToQueue.addEventListener("click", addQueueMoviesInStorage);
-btnGetToWatched.addEventListener("click", addWatchedMoviesInStorage);
-btnGetToQueue.addEventListener("click", getQueueMoviesInStorage);
+// btnGetToWatched.addEventListener("click", addWatchedMoviesInStorage);
+// btnGetToQueue.addEventListener("click", getQueueMoviesInStorage);
 
 const warningTextUa = "Нажаль тут ще не має жодного фільму.  Тому спеціально для тебе ми підібрали найпопулярніші фільми. Приємного переглядцу!"
 const warningTextEng = " Unfortunately, there is no movie here yet.Therefore, we have selected the most popular movies especially for you.Happy viewing!"
@@ -196,11 +198,11 @@ vote_count: 3025,
 
 // console.log(moviesQueueInLocal);
 
-export function addWatchedMoviesInStorage() {
+export function addWatchedMoviesInStorage(filmObject) {
     const localStorageArr = localStorage.getItem(KEY_WATCHED) || [];
     console.log("Before",localStorageArr);
-    if (!localStorageArr.includes(361739)) {
-    moviesWatchedInLocal.push(dateSt);
+    if (!localStorageArr.includes(filmObject.id)) {
+    moviesWatchedInLocal.push(filmObject);
     console.log("In if",moviesWatchedInLocal);
 
         localStorage.setItem(KEY_WATCHED, JSON.stringify(moviesWatchedInLocal));
@@ -212,11 +214,11 @@ export function addWatchedMoviesInStorage() {
     return 
 }
 
-export function addQueueMoviesInStorage() {
+export function addQueueMoviesInStorage(filmObject) {
     const localStorageArr = localStorage.getItem(KEY_QUEUE) || [];
     console.log("Before",localStorageArr);
-    if (!localStorageArr.includes(361739)) {
-    moviesQueueInLocal.push(dateSt);
+    if (!localStorageArr.includes(filmObject.id)) {
+    moviesQueueInLocal.push(filmObject);
     console.log("In if",moviesQueueInLocal);
 
         localStorage.setItem(KEY_QUEUE, JSON.stringify(moviesQueueInLocal));
