@@ -81,7 +81,7 @@ function generateTrendingMoveisMarkup(trendingArray) {
   );
 }
 
-function renderTrendingMovies(trendingArray) {
+export function renderTrendingMovies(trendingArray) {
   const trendingMovies = generateTrendingMoveisMarkup(trendingArray);
   // trendingMoviesContainer.insertAdjacentHTML('beforeend', trendingMovies);
   trendingMoviesContainer.innerHTML = trendingMovies;
