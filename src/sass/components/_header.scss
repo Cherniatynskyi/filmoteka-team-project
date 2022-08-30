@@ -26,7 +26,6 @@
   display: flex;
   align-items: center;
   width: 100%;
-  // justify-content: center;
 
   justify-content: space-between;
 
@@ -52,9 +51,11 @@
   &:hover,
   &:focus {
     color: $accent-color;
+    transition: color $main-effects-option;
 
     & use {
       stroke: $accent-color;
+      transition: stroke $main-effects-option;
     }
   }
 }
@@ -136,6 +137,7 @@
   &:hover,
   &:focus {
     color: $accent-color;
+    transition: color $main-effects-option;
   }
 }
 
@@ -192,12 +194,15 @@
   &:hover,
   &:focus {
     color: $accent-color;
+    transition: color $main-effects-option;
 
     &::after {
       border-bottom: 1px solid $accent-color;
+      transition: border-bottom $main-effects-option;
     }
     & ::placeholder {
       color: $accent-color;
+      transition: color $main-effects-option;
     }
   }
 }
@@ -246,6 +251,7 @@
 
   &:hover {
     stroke: $accent-color;
+    transition: stroke $main-effects-option;
   }
 }
 
@@ -290,7 +296,7 @@
   border: 1px solid $second-text-color;
   border-radius: 5px;
   background-color: transparent;
-  // font-weight: 500;
+  font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   color: $second-text-color;
@@ -299,6 +305,9 @@
   &:focus {
     background-color: $accent-color;
     border: 1px solid transparent;
+
+    transition: background-color $main-effects-option,
+      border $main-effects-option;
   }
 
   @media screen and (min-width: 768px) {
