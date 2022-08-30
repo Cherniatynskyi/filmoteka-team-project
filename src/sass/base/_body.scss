@@ -1,7 +1,19 @@
 html, body{
+    height: 100%;
+    line-height: 1;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+}
+
+.wraper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+flex: 1 1 auto;             
 }
