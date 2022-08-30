@@ -6,7 +6,7 @@ const closeModalCard = document.querySelector('[data-modalCard-close]');
 const modalCardCont = document.querySelector('[data-modalCard]');
 const backdrop = document.querySelector('[backdrop]');
 const cardContMarking = document.querySelector('.card__cont-marking');
-const cardTableContainer = document.querySelector('.card__table-container');
+const cardTableContainer = document.querySelector('.card__table');
 const addToWatchedButton = document.querySelector('[data-add-to-watched]');
 const addToQueueButton = document.querySelector('[data-add-to-queue]');
 
@@ -26,9 +26,10 @@ window.addEventListener('keydown', onEscClick);
 
 function onCloseModalCard() {
   modalCardCont.classList.add('no-activ');
-  var htmlEl = document.getElementsByTagName('HTML')[0];
+  const htmlEl = document.getElementsByTagName('HTML')[0];
   htmlEl.classList.remove('no-scroll');
   cardContMarking.innerHTML = '';
+  cardTableContainer.innerHTML = '';
 }
 
 function onBackModalDropClick(evt) {
@@ -53,7 +54,7 @@ function onOpenModalCard(event) {
     getMovieByID(filmID).then(res => cardMarkUp(res));
 
     modalCardCont.classList.remove('no-activ');
-    var htmlEl = document.getElementsByTagName('HTML')[0];
+    const htmlEl = document.getElementsByTagName('HTML')[0];
     htmlEl.classList.add('no-scroll');
 
   }
@@ -63,6 +64,7 @@ function onOpenModalCard(event) {
 
 function cardMarkUp(filmObject) {
   const markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  cardContMarking.insertAdjacentHTML('afterbegin', markUPImg);
 
   const markUp = `<h1 class="card__table-heder">${filmObject.title}</h1>
       <table class="card__table">
@@ -88,7 +90,6 @@ function cardMarkUp(filmObject) {
         <p class="card__about-text">${filmObject.overview}</p>
       </div>`;
   cardTableContainer.insertAdjacentHTML('afterbegin', markUp);
-  cardContMarking.insertAdjacentHTML('afterbegin', markUPImg);
   addToWatchedButton.addEventListener('click', () => addWatchedMoviesInStorage(filmObject));
   addToQueueButton.addEventListener('click', () => addQueueMoviesInStorage(filmObject));
 
