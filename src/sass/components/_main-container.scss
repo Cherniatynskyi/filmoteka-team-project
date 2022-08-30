@@ -47,7 +47,8 @@
     }
 };
 
-.grid-movie-card {
+.movie-item {
+    position: relative;
     margin-bottom: 20px;
     display: block;
     width: calc(100vw - 2 * 20px);
@@ -58,6 +59,7 @@
     &:last-child {
         margin-bottom: 0px;
     }
+
 
         @media screen and (min-width: 768px) and (max-width: 1279px) {
                 margin-bottom: 0;
@@ -76,7 +78,44 @@
         }
 }
 
+.grid-movie-card{
+    position: relative;
+    padding: 5px;
+    padding-bottom: 20px;
+}
 
+.grid-movie-card:hover {
+
+    .movie-item {
+            padding: 0 0 10 8;
+            transform: translate(-10px, -10px);
+            box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                9px 10px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0px 0px 4px 4px;
+        }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px){
+        .movie-item{
+            position: absolute;
+            transform: translate(-10px, -10px);
+            padding: 0 0 20 10;
+            box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                18px 10px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0px 0px 4px 4px;
+        }
+    }
+
+        @media screen and (min-width: 1280px) {
+            .movie-item {
+                position: absolute;
+                transform: translate(-10px, -10px);
+                padding: 0 0 20 10;
+                box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                    18px 10px 10px rgba(0, 0, 0, 0.2);
+                border-radius: 0px 0px 4px 4px;
+            }
+        }
+}
 
 
 .movie-list {

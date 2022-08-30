@@ -27,12 +27,6 @@
     htmlEl.classList.remove('no-scroll');
   }
 
-  function onCloseTeamModal() {
-    refs.modal.classList.add('is-hidden');
-    var htmlEl = document.getElementsByTagName("HTML")[0]
-    htmlEl.classList.remove('no-scroll');
-  }
-
 })();
   
 

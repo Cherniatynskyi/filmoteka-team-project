@@ -43,13 +43,15 @@ export function getWatchedMoviesInStorage() {
         alt="${item.title}"
         loading="lazy" />
         </div>
-        <div class="movie-info">
-          <h3 class="movie-title">${item.original_title}</h3>
-          <ul class="thumb">
-            <li class="movie-genre">${properGenre}</li>
-            <li class="movie-date">| ${dateMarkup}</li>
-            <li class="movie-rating">${voteMarkup}</li>
-          </ul>
+        <div class="movie-info-wrapper">
+          <div class="movie-info">
+            <h3 class="movie-title">${item.original_title}</h3>
+            <ul class="thumb">
+              <li class="movie-genre">${properGenre}</li>
+              <li class="movie-date">| ${dateMarkup}</li>
+              <li class="movie-rating">${voteMarkup}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </li>`;

@@ -44,12 +44,14 @@ function createTrendingCard(moviesArray) {
           loading="lazy"
         />
         </div>
-        <div class="movie-info data-open">
-          <h3 class="movie-title">${properTitle}</h3>
-          <ul class="thumb">
-            <li class="movie-genre">${properGenre}</li>
-            <li class="movie-date">| ${properDate}</li>
-          </ul>
+        <div class="movie-info-wrapper">
+          <div class="movie-info data-open">
+            <h3 class="movie-title">${properTitle}</h3>
+            <ul class="thumb">
+              <li class="movie-genre">${properGenre}</li>
+              <li class="movie-date">| ${properDate}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </li>`;
@@ -58,12 +60,14 @@ function createTrendingCard(moviesArray) {
       <div class="movie-item ">
       <div class="img-wrapper img-placeholder">
         </div>
-        <div class="movie-info data-open">
-          <h3 class="movie-title">${properTitle}</h3>
-          <ul class="thumb">
-            <li class="movie-genre">${properGenre}</li>
-            <li class="movie-date">| ${properDate}</li>
-          </ul>
+        <div class="movie-info-wrapper">
+          <div class="movie-info data-open">
+            <h3 class="movie-title">${properTitle}</h3>
+            <ul class="thumb">
+              <li class="movie-genre">${properGenre}</li>
+              <li class="movie-date">| ${properDate}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </li>`;
