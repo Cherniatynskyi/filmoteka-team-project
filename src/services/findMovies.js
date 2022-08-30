@@ -5,24 +5,31 @@ import {
   getProperGenre,
   paginationNavigation1,
 } from './trendingPage';
-import { addMoviesInStorage } from './addFindMovieInStorage';
 
-const filmSearch = document.querySelector('.form');
+
 const moviesListContainer = document.querySelector('.movie-grid-list');
 const formError = document.querySelector('.form__error');
+const backButton = document.querySelector('#backButton');
+const nextButton = document.querySelector('#nextButton');
+const paginadionThumb = document.querySelector('.paginationsContainer')
+let paginationPageNumber = document.querySelector('#paginationPageNumber');
+
 
 form.addEventListener('submit', findMovies);
 let request;
 let page = 1;
 
 async function findMovies(e) {
+  page = 1;
   paginationPageNumber.textContent = `${page}`;
   backButton.classList.add('hide');
   e.preventDefault();
   request = e.target.firstElementChild.value;
   try {
     const responseArr = await getMovies('search/movie', request, 1);
+
     errorIsHidden();
+    checkPages(responseArr);
     checkAndMarkup(responseArr);
 
     backButton.removeEventListener('click', paginationNavigation1);
@@ -49,7 +56,6 @@ export function checkAndMarkup(responseArr) {
     return;
   } else {
     cardMarkup(responseArr.data.results);
-    // addMoviesInStorage(responseArr.data.results);
   }
 }
 
@@ -118,10 +124,20 @@ export function errorIsHidden() {
   return;
 }
 
-const backButton = document.querySelector('#backButton');
+function checkPages(arr) {
+  if (arr.data.total_pages < 2) {
+    paginadionThumb.classList.add("visually-hidden")
+  } if (arr.data.total_pages >= 2) {
+    paginadionThumb.classList.remove("visually-hidden")
+  }
+  return
+}
+
+
+////////////////////////////////////////////////////////////////////
+
 backButton.classList.add('hide');
-const nextButton = document.querySelector('#nextButton');
-let paginationPageNumber = document.querySelector('#paginationPageNumber');
+
 
 function paginationNavigation(e) {
   page === 1 || page < 1
