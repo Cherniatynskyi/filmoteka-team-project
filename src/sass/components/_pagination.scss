@@ -61,11 +61,11 @@
 .backButton,
 .nextButton {
 
-    background-color: $background-light-grey;
+    background-color: #ff6b01;
     height: 40px;
     width: 40px;
 
-    color: black;
+    color: white;
     padding: 0.5rem;
     cursor: pointer;
 }
@@ -73,7 +73,7 @@
 .backButton:hover,
 .nextButton:hover {
     background-color: $accent-color;
-    color: white;
+  
 
 }
 
