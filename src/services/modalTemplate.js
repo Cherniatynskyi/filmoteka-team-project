@@ -1,5 +1,5 @@
 import { getMovieByID } from './MovieObjectByID';
-import { addWatchedMoviesInStorage, addQueueMoviesInStorage} from './myLibraryPage';
+// import { addWatchedMoviesInStorage, addQueueMoviesInStorage} from './myLibraryPage';
 
 const openModalCard = document.querySelector('[data-modalCard-open]');
 const closeModalCard = document.querySelector('[data-modalCard-close]');
@@ -21,7 +21,12 @@ modalCardCont.addEventListener('click', onBackModalDropClick);
 window.addEventListener('keydown', onEscClick);
 
 
-
+// local 
+const KEY_WATCHED = "watched-movies-in-storage";
+const KEY_QUEUE = "queue-movies-in-storage";
+const moviesWatchedInLocal = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
+const moviesQueueInLocal = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
+// 
 
 
 function onCloseModalCard() {
@@ -96,3 +101,35 @@ function cardMarkUp(filmObject) {
 }
 
 
+export function addWatchedMoviesInStorage(filmObject) {
+    const localStorageArr = localStorage.getItem(KEY_WATCHED) || [];
+  console.log("Before", localStorageArr);
+  console.log("Film",filmObject.id);
+  
+    if (!localStorageArr.includes(filmObject.id)) {
+    moviesWatchedInLocal.push(filmObject);
+    // console.log("In if",moviesWatchedInLocal);
+
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(moviesWatchedInLocal));
+    
+      //  getWatchedMoviesInStorage();
+     
+    }
+    
+    return 
+}
+
+export function addQueueMoviesInStorage(filmObject) {
+    const localStorageArr = localStorage.getItem(KEY_QUEUE) || [];
+  console.log("Before", localStorageArr);
+  console.log(filmObject);
+  console.log("Цей фільм вже є", localStorageArr.includes(filmObject.id));
+    if (!localStorageArr.includes(filmObject.id)) {
+    moviesQueueInLocal.push(filmObject);
+    // console.log("In if",moviesQueueInLocal);
+
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(moviesQueueInLocal));
+    // getQueueMoviesInStorage();
+    }
+    return 
+}
