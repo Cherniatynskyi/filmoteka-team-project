@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://Cherniatynskyi.github.io/kinoteka-team-project",
+  "homepage": "https://Cherniatynskyi.github.io/filmoteka-team-project",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /kinoteka-team-project/"
+    "build": "parcel build src/*.html --public-url /filmoteka-team-project/"
   },
   "repository": {
     "type": "git",
