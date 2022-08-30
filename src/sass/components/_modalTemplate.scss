@@ -142,6 +142,18 @@ td {
 
 }
 
+.average {
+    color: $second-text-color;
+    background: $accent-color;
+    border-radius: 5px;
+    padding: 1 10 1 10;
+}
+
+.vote {
+    background: #F7F7F7;
+    border-radius: 5px;
+    padding: 1 10 1 10;
+}
 
 .last-child {
     padding-bottom: 0px;
@@ -211,6 +223,7 @@ td {
     @media screen and (max-width: 1279px) {
         margin-bottom: 40px;
     }
+
 }
 
 .card__button-text {
@@ -239,12 +252,19 @@ td {
         }
     }
 
+    @media screen and (max-width: 1279px) {
+        width: 125px;
+    }
+
     &:focus {
         background-color: $accent-color;
         color: $second-text-color;
     }
 
-    @media screen and (max-width: 1279px) {
-        width: 125px;
+    &:hover {
+        background-color: #F7F7F7;
+        color: $accent-color;
+        box-shadow: 0.2em -0 .2em $accent-color, -0.2em 0 .2em $accent-color;
+        border: none;
     }
 }
