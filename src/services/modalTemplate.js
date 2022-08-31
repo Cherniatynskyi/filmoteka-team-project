@@ -64,6 +64,9 @@ function cardMarkUp(filmObject) {
   const trimMarkupVote = trimMarkup(filmObject.vote_average);
   const trimMarkupPopular = trimMarkup(filmObject.popularity);
 
+  let markupGenre = filmObject.genres;
+  let cardGenre = markupGenre.map(genr => genr.name);
+
   const markUp = `<h1 class="card__table-heder">${filmObject.title}</h1>
       <table class="card__table">
         <tr class="card__table-vote">
@@ -80,7 +83,7 @@ function cardMarkUp(filmObject) {
         </tr>
         <tr class="card__table-genre">
           <td class="card__table-name last-child">Genre</td>
-          <td class="card__table-value last-child">${filmObject.genre}</td>
+          <td class="card__table-value last-child">${cardGenre}</td>
         </tr>
       </table>
       <div class="card__about">
@@ -122,7 +125,6 @@ function checkMovieByIdWatched(movie, key) {
   console.log(includesMovie, 'нука');
   if (!includesMovie) {
     addToWatchedButton.addEventListener('click', () =>
-
       addWatchedMoviesInStorage(movie)
     );
     addToWatchedButton.textContent = 'Add to watched';
@@ -146,7 +148,6 @@ function checkMovieByIdQueue(movie, key) {
     addToQueueButton.textContent = 'Add to queue';
   } else if (includesMovie) {
     addToQueueButton.addEventListener('click', () =>
-
       removeMovieFromQueue(movie, key)
     );
     addToQueueButton.textContent = 'Remove from queue';
