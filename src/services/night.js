@@ -3,7 +3,7 @@ let nightMode = document.querySelector('.slider ');
  let darkMode = localStorage.getItem("dark-mode");
 
 const enableDarkMode = () => {
-    document.querySelector('body').style.background = '#243237'
+    document.querySelector('body').style.background = '#292E34'
     document.querySelector('footer').style.background = 'black'
     document.querySelector('.card__cont-modal').style.background = '#4a4a48'
     document.querySelector('.paginationPageNumber').style.color = '#ff6b01'
