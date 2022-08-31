@@ -1,0 +1,335 @@
+.header {
+  position: relative;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding-top: 40px;
+  padding-bottom: 84px;
+  // margin-left: auto;
+  // margin-right: auto;
+  @media screen and (max-width: 767px) {
+    padding-bottom: 94px;
+  }
+}
+
+.library {
+  padding-bottom: 166px;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 142px;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  justify-content: space-between;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  margin-right: 112px;
+  font-weight: 500;
+  font-size: 30px;
+  color: $second-text-color;
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+    transition: color $main-effects-option;
+
+    & use {
+      stroke: $accent-color;
+      transition: stroke $main-effects-option;
+    }
+  }
+}
+
+.nav-logo__icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: $second-text-color;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 8px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 10px;
+  }
+}
+
+.nav-logo__text {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.header__background-home {
+  background-image: url(../img/background-mobile.jpg);
+  background-color: $main-text-color;
+
+  @media screen and (min-width: 768px) {
+    background-image: url(../img/background-tab.jpg);
+    background-color: $main-text-color;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../img/background-desc.jpg);
+    background-color: $main-text-color;
+  }
+}
+
+.header__background-library {
+  background-image: url(../img/background-mobile-library.jpg);
+  background-color: $main-text-color;
+
+  @media screen and (min-width: 768px) {
+    background-image: url(../img/background-tab-library.jpg);
+    background-color: $main-text-color;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../img/background-desc-library.jpg);
+    background-color: $main-text-color;
+  }
+}
+
+//* Разметка кнопок хедера
+
+.nav-buttons {
+  display: flex;
+}
+
+.nav-btn {
+  position: relative;
+
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  color: $second-text-color;
+
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+    transition: color $main-effects-option;
+  }
+}
+
+.current {
+  &::after {
+    position: absolute;
+    bottom: -5px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: $header-accent-color;
+  }
+}
+
+//* Разметка формы
+
+.is-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.form {
+  position: relative;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-top: 54px;
+  width: 280px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+    margin-top: 40px;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+    transition: color $main-effects-option;
+
+    &::after {
+      border-bottom: 1px solid $accent-color;
+      transition: border-bottom $main-effects-option;
+    }
+    & ::placeholder {
+      color: $accent-color;
+      transition: color $main-effects-option;
+    }
+    & .form-icon {
+      stroke: $accent-color;
+      transition: stroke $main-effects-option;
+    }
+  }
+}
+
+.form::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  content: '';
+
+  width: 100%;
+  height: 4px;
+  background: none;
+  border-bottom: 1px solid $second-text-color;
+}
+
+.form__input {
+  color: $second-text-color;
+  background: none;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  width: 100%;
+}
+
+.form__input::placeholder {
+  color: $second-text-color;
+}
+
+.form__btn-submit {
+  background: none;
+  outline: none;
+  border: none;
+  // background-image: url('../img/search.png');
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.form-icon {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: $second-text-color;
+
+  &:hover {
+    stroke: $accent-color;
+    transition: stroke $main-effects-option;
+  }
+}
+
+.form__error {
+  position: absolute;
+  margin-top: 16px;
+  width: 100%;
+  text-align: left;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: $header-accent-color;
+}
+
+//* Разметка кнопок библиотеки
+
+.library-buttons {
+  display: inline-flex;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  @media screen and (max-width: 767px) {
+    top: 65%;
+  }
+}
+
+.btn {
+  position: relative;
+  // cursor: pointer;
+  width: 130px;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  border: 1px solid $second-text-color;
+  border-radius: 5px;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: $second-text-color;
+
+  &:hover,
+  &:focus {
+    background-color: $accent-color;
+    border: 1px solid transparent;
+
+    transition: background-color $main-effects-option,
+      border $main-effects-option;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 152px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 148px;
+    padding-top: 13px;
+    padding-bottom: 11px;
+  }
+}
+
+.btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.current__library-button {
+  background-color: $accent-color;
+  border: 1px solid transparent;
+}

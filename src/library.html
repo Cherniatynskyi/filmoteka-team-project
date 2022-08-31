@@ -19,25 +19,31 @@
     />
   </head>
   <body>
-    <include src="./partials/header.html"></include>
-    <include src="./partials/genres-filter.html"></include>
-    <main>
-      <include src="./partials/main-container.html"></include>
-      <include src="./partials/pagination.html"></include>
-    </main>
+    <div class="wraper">
+      <include src="./partials/library-header.html"></include>
+      <main>
+        <include src="./partials/main-container.html"></include>
+        <include src="./partials/pagination.html"></include>
+      </main>
+    
     <include src="./partials/footer.html"></include>
     <include src="./partials/footer-modal.html"></include>
     <include src="./partials/modalTemplate.html"></include>
-    <script src="./services/myLibraryPage.js" type="module"></script>
+    </div>
+
     <script src="./services/getGenres.js" type="module"></script>
 
     <script type="module" src="./index.js"></script>
-    <!-- <script src="./pagin.js"></script> -->
-    <script src="./services/findMovies.js" type="module"></script>
-    <!-- <script type="module" src="../src/services/trendingPage.js"></script> -->
+    <!-- <script src="./pagin.js" type="module"></script> -->
+    <!-- <script src="./services/findMovies.js" type="module"></script> -->
+    <!-- <script
+      type="module"
+      src="../src/services/trendingPage.js"
+      type="module"
+    ></script> -->
+    <script src="./services/myLibraryPage.js" type="module"></script>
     <script src="./services/footer-modal.js"></script>
     <script src="./services/modalTemplate.js" type="module"></script>
-    <script src="./services/genreFilter.js" type="module"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="./services/changeButtonLibrary.js"></script>
   </body>
 </html>

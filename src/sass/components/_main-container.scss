@@ -1,0 +1,159 @@
+.container {
+    max-width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        max-width: 768px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    @media screen and (min-width: 1280px) {  
+        max-width: 1280px;
+        padding-left: 32px;
+        padding-right: 32px;
+        // border: 1px solid red;
+    }
+
+};
+
+
+.movie-grid-list {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+            padding-top: 60px;
+            padding-bottom: 60px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            column-gap: 32px;
+            row-gap: 32px;
+            justify-content: center;
+            // align-items: center;
+        }
+    @media screen and (min-width: 1280px) {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 16px;
+            row-gap: 32px;
+            justify-content: center;
+            // align-items: center;
+    }
+};
+
+.movie-item {
+    position: relative;
+    margin-bottom: 20px;
+    display: block;
+    width: calc(100vw - 2 * 20px);
+    max-width: 280px;
+    cursor: pointer;
+    // border: 1px solid red;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+
+
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+                margin-bottom: 0;
+                display: block;
+        width: calc(100vw / 2 - 2 * 25px);
+                max-width: 336px;
+                // max-height: 495px;
+        }
+    
+        @media screen and (min-width: 1280px) {
+                margin-bottom: 0;
+                display: block;
+                // якщо тут ставлю фіксацію на ширину - справа є прогалина
+                width: calc(100vw / 3 - 2 * 19px);
+                max-width: 394px;
+        }
+}
+
+.grid-movie-card{
+    position: relative;
+    cursor: pointer;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+
+.grid-movie-card:hover {
+
+    .movie-item {
+            transform: translate(0px, -5px);
+            transition: $main-effects-option;
+            box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                9px 10px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0px 0px 4px 4px;
+    }
+    .movie-info-wrapper {
+            padding-left: 6px;
+            padding-top: 0;
+    }
+    .movie-info {
+        padding-top: 5px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px){
+        .movie-item{
+            position: absolute;
+            transform: translate(0px, -5px);
+            padding: 0 0 20 0;
+            box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                18px 10px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0px 0px 4px 4px;
+        }
+        .movie-info-wrapper {
+            padding-left: 6px;
+            padding-top: 0;
+        }
+    }
+
+        @media screen and (min-width: 1280px) {
+            .movie-item {
+                position: absolute;
+                transform: translate(0px, -6px);
+                padding: 0 0 10 0;
+                box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                    18px 10px 10px rgba(0, 0, 0, 0.2);
+                border-radius: 0px 0px 4px 4px;
+            }
+            .movie-info-wrapper{
+                padding-left: 8px;
+                padding-top: 0;
+            }
+        }
+}
+
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-items: center;
+
+    margin: -20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: 768px) {
+        margin: -16px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin: -8px;
+
+    }
+}
