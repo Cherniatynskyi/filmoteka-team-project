@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Filmoteka</title>
+    <link rel="icon" href="./img/logo.jpg" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
@@ -20,6 +21,7 @@
   </head>
   <body>
     <include src="./partials/header.html"></include>
+    <include src="./partials/genres-filter.html"></include>
     <main>
       <include src="./partials/main-container.html"></include>
       <include src="./partials/pagination.html"></include>
@@ -36,5 +38,7 @@
     <!-- <script type="module" src="../src/services/trendingPage.js"></script> -->
     <script src="./services/footer-modal.js"></script>
     <script src="./services/modalTemplate.js" type="module"></script>
+    <script src="./services/genreFilter.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   </body>
 </html>

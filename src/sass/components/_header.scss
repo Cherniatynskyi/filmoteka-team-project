@@ -204,6 +204,10 @@
       color: $accent-color;
       transition: color $main-effects-option;
     }
+    & .form-icon {
+      stroke: $accent-color;
+      transition: stroke $main-effects-option;
+    }
   }
 }
 
