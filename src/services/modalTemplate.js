@@ -122,13 +122,12 @@ function checkMovieByIdWatched(movie, key) {
   console.log(includesMovie, 'нука');
   if (!includesMovie) {
     addToWatchedButton.addEventListener('click', () =>
-      addToWatchedButton.textContent = "Remove from watched",
+
       addWatchedMoviesInStorage(movie)
     );
     addToWatchedButton.textContent = 'Add to watched';
   } else if (includesMovie) {
     addToWatchedButton.addEventListener('click', () =>
-      addToWatchedButton.textContent = "Add to watched",
       removeMovieFromWatched(movie, key)
     );
     addToWatchedButton.textContent = 'Remove from watched';
@@ -142,13 +141,12 @@ function checkMovieByIdQueue(movie, key) {
   if (!includesMovie) {
     console.log(lockalStorageId.includes(includesMovie));
     addToQueueButton.addEventListener('click', () =>
-      addToQueueButton.textContent = "Remove from queue",
       addQueueMoviesInStorage(movie)
     );
     addToQueueButton.textContent = 'Add to queue';
   } else if (includesMovie) {
     addToQueueButton.addEventListener('click', () =>
-      addToQueueButton.textContent = "Add to queue",
+
       removeMovieFromQueue(movie, key)
     );
     addToQueueButton.textContent = 'Remove from queue';
