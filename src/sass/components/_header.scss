@@ -141,6 +141,16 @@
   }
 }
 
+.nav-queue-btn {
+  color: $main-text-color;
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+    transition: color $main-effects-option;
+  }
+}
+
 .current {
   &::after {
     position: absolute;

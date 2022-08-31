@@ -156,11 +156,13 @@ export function getQueueMoviesInStorage() {
     // console.log(markup);
     moviesListContainer.innerHTML = markup;
   } else {
-    moviesListContainer.innerHTML = `<p>${warningTextUa}</p>
-                                   <p> ${warningTextEng}</p>
-                                   <button class="nav-btn" data-btn-home="">
-                                   <a href="/index.html">the best here</a>
-                                   </button>`;
+    moviesListContainer.innerHTML = `
+    <p>${warningTextUa}</p>
+    <button class="nav-btn nav-queue-btn" data-btn-home="">
+    <a href="/index.html">the best here</a>
+    </button>
+    <p> ${warningTextEng}</p>
+    `;
   }
 }
 
