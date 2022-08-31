@@ -24,20 +24,23 @@ const KEY_QUEUE = "queue-movies-in-storage";
 const moviesWatchedInLocal = JSON.parse(localStorage.getItem(KEY_WATCHED)) || [];
 const moviesQueueInLocal = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
 
+getWatchedMoviesInStorage();
 
 export function getWatchedMoviesInStorage() {
-  console.log("click");
-    const markup = moviesWatchedInLocal.map(item => {
-        const dateMarkup = getYear(item.release_date);
-        const voteMarkup = getRating(item.vote_average);
-        // const properTitle = makeMovieTitle(item);
-      let properGenre = item.genres;
-    //     if (properGenre.length === 0) {
-    //       console.log(properGenre.length);
-    //     properGenre = 'No info';
-    //   }
-        properGenre.length === 0 ? properGenre = 'No info' : properGenre;
+const getData = moviesWatchedInLocal;
+        console.log("getData", getData);
+    console.log(JSON.parse(getData.length));
     
+   if (getData.length >= 1) {const markup = moviesWatchedInLocal.map(item => {
+      const dateMarkup = getYear(item.release_date);
+      const voteMarkup = getRating(item.vote_average);
+     let genrArr = item.genres;
+     let properGenre = genrArr.map(genr => genr.name);
+    
+     properGenre.length === 0 ? properGenre = 'No info' : properGenre;
+
+     properGenre.length >= 2 ? properGenre = properGenre.slice(0, 2).join() + ', Other...' : properGenre;
+
       if (item.poster_path) {
         return `<li class="grid-movie-card" id="${item.id}">
       <div class="movie-item">
@@ -47,15 +50,13 @@ export function getWatchedMoviesInStorage() {
         alt="${item.title}"
         loading="lazy" />
         </div>
-        <div class="movie-info-wrapper">
-          <div class="movie-info">
-            <h3 class="movie-title">${item.original_title}</h3>
-            <ul class="thumb">
-              <li class="movie-genre">${properGenre}</li>
-              <li class="movie-date">| ${dateMarkup}</li>
-              <li class="movie-rating">${voteMarkup}</li>
-            </ul>
-          </div>
+        <div class="movie-info">
+          <h3 class="movie-title">${item.original_title}</h3>
+          <ul class="thumb">
+            <li class="movie-genre">${properGenre}</li>
+            <li class="movie-date">| ${dateMarkup}</li>
+            <li class="movie-rating">${voteMarkup}</li>
+          </ul>
         </div>
       </div>
     </li>`;
@@ -77,8 +78,16 @@ export function getWatchedMoviesInStorage() {
       }
     })
     .join('');
-  moviesListContainer.innerHTML = markup;
+       moviesListContainer.innerHTML = markup;
+   } else {
+     moviesContainer.innerHTML =  `<p>${warningTextUa}</p>
+                                   <p> ${warningTextEng}</p>
+                                   <button class="nav-btn" data-btn-home="">
+                                   <a href="/index.html">the best here</a>
+                                   </button>`;
+  }
 }
+
 
 export function getQueueMoviesInStorage() {
         const getData = moviesQueueInLocal;
@@ -86,12 +95,15 @@ export function getQueueMoviesInStorage() {
     console.log(JSON.parse(getData.length));
     
    if (getData.length >= 1) {const markup = moviesQueueInLocal.map(item => {
-        const dateMarkup = getYear(item.release_date);
-        const voteMarkup = getRating(item.vote_average);
-        let properGenre = item.genres;
+      const dateMarkup = getYear(item.release_date);
+      const voteMarkup = getRating(item.vote_average);
+     let genrArr = item.genres;
+     let properGenre = genrArr.map(genr => genr.name);
     
-        properGenre.length === 0 ? properGenre = 'No info' : properGenre;
-    
+     properGenre.length === 0 ? properGenre = 'No info' : properGenre;
+
+     properGenre.length >= 2 ? properGenre = properGenre.slice(0, 2).join() + ', Other...' : properGenre;
+
       if (item.poster_path) {
         return `<li class="grid-movie-card" id="${item.id}">
       <div class="movie-item">
@@ -157,13 +169,9 @@ export function addWatchedMoviesInStorage() {
     moviesWatchedInLocal.push(filmObject);
     console.log("In if",moviesWatchedInLocal);
 
-        localStorage.setItem(KEY_WATCHED, JSON.stringify(moviesWatchedInLocal));
-        // localStorage.clear();
-       getWatchedMoviesInStorage();
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(moviesWatchedInLocal));
+    getWatchedMoviesInStorage();
     }
-    // else {
-    //   alert("Ти вже переглянув цей фільм");
-    // }
     return 
 }
 
@@ -174,50 +182,8 @@ export function addQueueMoviesInStorage() {
     moviesQueueInLocal.push(filmObject);
     console.log("In if",moviesQueueInLocal);
 
-        localStorage.setItem(KEY_QUEUE, JSON.stringify(moviesQueueInLocal));
-        // localStorage.clear();
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(moviesQueueInLocal));
     getQueueMoviesInStorage();
     }
-    // else {
-    //   alert("Фільм вже у черзі на перегляд");
-    // }
     return 
 }
-
-
-
-
-// const dateSt = {
-//   adult: false,
-//   backdrop_path: "/9n5e1vToDVnqz3hW10Jdlvmzpo0.jpg",
-//   belongs_to_collection: { id: 531330, name: 'Top Gun Collection', poster_path: '/pG4LGdxjNBHbsjMKnPWtkRSJcUv.jpg', backdrop_path: '/eNupRRVv0a4dkVTxOMvG7LhNBaq.jpg' },
-//   budget: 170000000,
-//   genres:[{ id: 28, name: 'Action' },
-//     { id: 18, name: 'Drama' }],
-//   homepage: "https://www.topgunmovie.com",
-//   id: 361743,
-//   imdb_id: "tt1745960",
-// };
-
-// function findGenres(dateSt) {
-//   console.log(dateSt);
-//   console.log(dateSt.genres);
-//   const genresP = dateSt.genres;
-//   console.log(genresP);
-//   const genrArr = genresP.map(genr => genr.name)
- 
-// console.log(genrArr);
-  
-// }
-// findGenres(dateSt);
-
-// const findGenre = moviesQueueInLocal.map(item => {
-//         // const dateMarkup = getYear(item.release_date);
-//         // const voteMarkup = getRating(item.vote_average);
-//         // let properGenre = item.genres;
-//          console.log(dateSt.genres);
-//          console.log("Object", Object.values(dateSt.genres));
-//   // const genresK = Object.values(filmObject.genres);
-//   // console.log("Object ganr", Object.values(genresK));
-//     })
-//   .join('');
