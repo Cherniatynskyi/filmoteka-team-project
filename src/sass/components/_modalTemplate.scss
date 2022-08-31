@@ -237,6 +237,7 @@ td {
     height: 44px;
     border: 1px solid #000000;
     border-radius: 5px;
+    background-color: white;
 
     &:not(:last-child) {
         margin-right: 15px;
@@ -258,13 +259,13 @@ td {
 
     &:focus {
         background-color: $accent-color;
-        color: $second-text-color;
+        color: white;
+        border: none;
     }
 
     &:hover {
-        background-color: #F7F7F7;
-        color: $accent-color;
-        box-shadow: 0.2em -0 .2em $accent-color, -0.2em 0 .2em $accent-color;
+        background-color: $accent-color;
+        color: white;
         border: none;
     }
 }
