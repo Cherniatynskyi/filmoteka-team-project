@@ -7,7 +7,6 @@ const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&'+API_KEY;
 
 
 function getMovies(url) {
-    lastUrl = url;
     fetch(url).then(res => res.json()).then(data => {
         renderTrendingMovies(data.results)
     })
