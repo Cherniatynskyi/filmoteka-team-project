@@ -157,3 +157,57 @@
 
     }
 }
+
+.warning-container{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    padding-left: 0;
+    width: 100%;
+}
+
+.warning-title{
+    font-size: 46px;
+    line-height: 1.3;
+    font-weight: 300;
+}
+
+.warning-button{
+    background-color: rgb(231, 231, 231);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    width: 390px;
+    height: 600px;
+    text-align: center;
+    padding: 120 30 120 30 ;
+    border-radius: 5px;
+
+    &:hover{
+        transform: translate(0px, -5px);
+            transition: $main-effects-option;
+            box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                9px 10px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0px 0px 4px 4px;
+    }
+
+    
+}
+
+.warning-inside-text{
+    display: flex;
+    justify-content: center;
+    padding: auto;
+    align-items: center;
+    font-size: 60px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.warning-card-inside-text{
+    margin-top: 60px;
+    font-size: 200px;
+    font-weight: 100;
+}

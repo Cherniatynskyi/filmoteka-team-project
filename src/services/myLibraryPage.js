@@ -15,9 +15,9 @@ btnGetToWatched.addEventListener('click', getWatchedMoviesInStorage);
 btnGetToQueue.addEventListener('click', getQueueMoviesInStorage);
 
 const warningTextUa =
-  'Нажаль тут ще не має жодного фільму.  Тому спеціально для тебе ми підібрали найпопулярніші фільми. Приємного переглядцу!';
+  'На жаль тут ще не має жодного фільму. Тому спеціально для тебе ми підібрали найпопулярніші фільми. Приємного переглядцу!';
 const warningTextEng =
-  ' Unfortunately, there is no movie here yet.Therefore, we have selected the most popular movies especially for you.Happy viewing!';
+  ' Unfortunately, there is no movie here yet. Therefore, we have selected the most popular movies especially for you. Happy viewing!';
 
 const KEY_WATCHED = 'watched-movies-in-storage';
 const KEY_QUEUE = 'queue-movies-in-storage';
@@ -84,13 +84,6 @@ export function getWatchedMoviesInStorage() {
       .join('');
     moviesListContainer.innerHTML = markup;
   }
-  // else {
-  //   moviesContainer.innerHTML = `<p>${warningTextUa}</p>
-  //                                  <p> ${warningTextEng}</p>
-  //                                  <button class="nav-btn" data-btn-home="">
-  //                                  <a href="/index.html">the best here</a>
-  //                                  </button>`;
-  // }
 }
 
 export function getQueueMoviesInStorage() {
@@ -156,11 +149,16 @@ export function getQueueMoviesInStorage() {
     // console.log(markup);
     moviesListContainer.innerHTML = markup;
   } else {
-    moviesContainer.innerHTML = `<p>${warningTextUa}</p>
-                                   <p> ${warningTextEng}</p>
-                                   <button class="nav-btn" data-btn-home="">
-                                   <a href="/index.html">the best here</a>
-                                   </button>`;
+    moviesContainer.innerHTML = `  <div class="warning-container">
+                                    <p class="warning-title"> ${warningTextEng}</p>
+                                    <a class="warning-button" href="/index.html" data-btn-home="">
+                                        
+                                        <p class="warning-inside-text">ADD</p>
+                                        <p class="warning-card-inside-text">+</p>
+                                        
+                                     
+                                    </a>
+                                  </div>`;
   }
 }
 
