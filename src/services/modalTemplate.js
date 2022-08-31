@@ -47,6 +47,9 @@ function onOpenModalCard(event) {
   if (event.target.classList.contains('grid-movie-card')) {
     const filmID = event.target.attributes.id.value;
 
+    addToQueueButton.classList.remove('card-buton-change')
+    addToWatchedButton.classList.remove('card-buton-change')
+
     getMovieByID(filmID).then(res => cardMarkUp(res));
 
     modalCardCont.classList.remove('no-activ');
@@ -174,3 +177,29 @@ function removeMovieFromQueue(movie) {
 
   getQueueMoviesInStorage();
 }
+
+
+// Dynamic changing text-content on modal buttons 
+
+addToQueueButton.addEventListener('click', () => {
+  if (addToQueueButton.textContent == "Remove from queue") {
+    addToQueueButton.textContent = "Removed from Queue"
+    addToQueueButton.classList.add('card-buton-change')
+  }
+  if (addToQueueButton.textContent == "Add to queue") {
+    addToQueueButton.textContent = "Added to Queue"
+    addToQueueButton.classList.add('card-buton-change')
+  }
+});
+
+addToWatchedButton.addEventListener('click', () => {
+  if (addToWatchedButton.textContent == "Remove from watched") {
+    addToWatchedButton.textContent = "Removed from watched"
+    addToWatchedButton.classList.add('card-buton-change')
+    
+  }
+  if (addToWatchedButton.textContent == "Add to watched") {
+    addToWatchedButton.textContent = "Added to Watched"
+    addToWatchedButton.classList.add('card-buton-change')
+  }
+});
