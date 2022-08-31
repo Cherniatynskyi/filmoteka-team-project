@@ -1,5 +1,8 @@
 import { getMovieByID } from './MovieObjectByID';
-// import { addWatchedMoviesInStorage, addQueueMoviesInStorage} from './myLibraryPage';
+import {
+  getWatchedMoviesInStorage,
+  getQueueMoviesInStorage,
+} from './myLibraryPage';
 
 const openModalCard = document.querySelector('[data-modalCard-open]');
 const closeModalCard = document.querySelector('[data-modalCard-close]');
@@ -15,12 +18,8 @@ closeModalCard.addEventListener('click', onCloseModalCard);
 modalCardCont.addEventListener('click', onBackModalDropClick);
 window.addEventListener('keydown', onEscClick);
 
-// local
 const KEY_WATCHED = 'watched-movies-in-storage';
 const KEY_QUEUE = 'queue-movies-in-storage';
-const moviesWatchedInLocal = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
-const moviesQueueInLocal = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
-//
 
 function onCloseModalCard() {
   modalCardCont.classList.add('no-activ');
@@ -44,11 +43,10 @@ function onEscClick(evt) {
   }
 }
 
-// +++++++++++++++++++++++++++++++
 function onOpenModalCard(event) {
   if (event.target.classList.contains('grid-movie-card')) {
     const filmID = event.target.attributes.id.value;
-    //визиваємо ф-ію, що записує об'єкт фільму у змінну
+
     getMovieByID(filmID).then(res => cardMarkUp(res));
 
     modalCardCont.classList.remove('no-activ');
@@ -59,6 +57,8 @@ function onOpenModalCard(event) {
 }
 
 function cardMarkUp(filmObject) {
+  checkMovieByIdWatched(filmObject, KEY_WATCHED);
+  checkMovieByIdQueue(filmObject, KEY_QUEUE);
   const markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
   cardContMarking.insertAdjacentHTML('afterbegin', markUPImg);
   const trimMarkupVote = trimMarkup(filmObject.vote_average);
@@ -88,46 +88,87 @@ function cardMarkUp(filmObject) {
         <p class="card__about-text">${filmObject.overview}</p>
       </div>`;
   cardTableContainer.insertAdjacentHTML('afterbegin', markUp);
-  addToWatchedButton.addEventListener('click', () =>
-    addWatchedMoviesInStorage(filmObject)
-  );
-  addToQueueButton.addEventListener('click', () =>
-    addQueueMoviesInStorage(filmObject)
-  );
 }
 
 export function addWatchedMoviesInStorage(filmObject) {
   const localStorageArr = localStorage.getItem(KEY_WATCHED) || [];
-  console.log('Before', localStorageArr);
-  console.log('Film', filmObject.id);
-
+  const parsedArr = JSON.parse(localStorage.getItem(KEY_WATCHED)) || [];
   if (!localStorageArr.includes(filmObject.id)) {
-    moviesWatchedInLocal.push(filmObject);
-    // console.log("In if",moviesWatchedInLocal);
-
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(moviesWatchedInLocal));
-
-    //  getWatchedMoviesInStorage();
+    parsedArr.push(filmObject);
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(parsedArr));
   }
 
   return;
 }
-
 export function addQueueMoviesInStorage(filmObject) {
-  const localStorageArr = localStorage.getItem(KEY_QUEUE) || [];
-  console.log('Before', localStorageArr);
-  console.log(filmObject);
-  console.log('Цей фільм вже є', localStorageArr.includes(filmObject.id));
-  if (!localStorageArr.includes(filmObject.id)) {
-    moviesQueueInLocal.push(filmObject);
-    // console.log("In if",moviesQueueInLocal);
-
-    localStorage.setItem(KEY_QUEUE, JSON.stringify(moviesQueueInLocal));
-    // getQueueMoviesInStorage();
+  const localStorageArrq = localStorage.getItem(KEY_QUEUE) || [];
+  const parsedArrq = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
+  console.log(parsedArrq, 'распасеный массив');
+  if (!localStorageArrq.includes(filmObject.id)) {
+    parsedArrq.push(filmObject);
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(parsedArrq));
   }
   return;
 }
 function trimMarkup(trim) {
   const trimMarkup = trim.toFixed(1);
   return trimMarkup;
+}
+
+function checkMovieByIdWatched(movie, key) {
+  const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
+  console.log(lockalStorageId, 'Просмотренные фильмы');
+  const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
+  console.log(includesMovie, 'нука');
+  if (!includesMovie) {
+    addToWatchedButton.addEventListener('click', () =>
+      addWatchedMoviesInStorage(movie)
+    );
+    addToWatchedButton.textContent = 'Add to watched';
+  } else if (includesMovie) {
+    addToWatchedButton.addEventListener('click', () =>
+      removeMovieFromWatched(movie, key)
+    );
+    addToWatchedButton.textContent = 'Remove from watched';
+  }
+}
+function checkMovieByIdQueue(movie, key) {
+  const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
+  console.log(lockalStorageId, 'Просмотренные фильмы');
+  const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
+
+  if (!includesMovie) {
+    console.log(lockalStorageId.includes(includesMovie));
+    addToQueueButton.addEventListener('click', () =>
+      addQueueMoviesInStorage(movie)
+    );
+    addToQueueButton.textContent = 'Add to queue';
+  } else if (includesMovie) {
+    addToQueueButton.addEventListener('click', () =>
+      removeMovieFromQueue(movie, key)
+    );
+    addToQueueButton.textContent = 'Remove from queue';
+  }
+}
+
+function removeMovieFromWatched(movie) {
+  const localStorageArr = JSON.parse(localStorage.getItem(KEY_WATCHED));
+  const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
+  if (includesMovie) {
+    const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(updatedArr));
+  }
+
+  getWatchedMoviesInStorage();
+}
+
+function removeMovieFromQueue(movie) {
+  const localStorageArr = JSON.parse(localStorage.getItem(KEY_QUEUE));
+  const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
+  if (includesMovie) {
+    const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(updatedArr));
+  }
+
+  getQueueMoviesInStorage();
 }
