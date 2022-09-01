@@ -44,6 +44,7 @@ function onEscClick(evt) {
 }
 
 function onOpenModalCard(event) {
+  console.log(event.target);
   if (event.target.classList.contains('grid-movie-card')) {
     const filmID = event.target.attributes.id.value;
 

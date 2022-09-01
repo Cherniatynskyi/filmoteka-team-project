@@ -86,14 +86,12 @@
 }
 
 .grid-movie-card:hover {
+    transform: translate(0px, -5px);
+        transition: $main-effects-option;
+        box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+            9px 10px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 0px 0px 4px 4px;
 
-    .movie-item {
-            transform: translate(0px, -5px);
-            transition: $main-effects-option;
-            box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-                9px 10px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 0px 0px 4px 4px;
-    }
     .movie-info-wrapper {
             padding-left: 6px;
             padding-top: 0;
@@ -103,14 +101,12 @@
     }
 
     @media screen and (min-width: 768px) and (max-width: 1279px){
-        .movie-item{
-            position: absolute;
+        position: absolute;
             transform: translate(0px, -5px);
             padding: 0 0 20 0;
             box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
                 18px 10px 10px rgba(0, 0, 0, 0.2);
             border-radius: 0px 0px 4px 4px;
-        }
         .movie-info-wrapper {
             padding-left: 6px;
             padding-top: 0;
@@ -118,14 +114,12 @@
     }
 
         @media screen and (min-width: 1280px) {
-            .movie-item {
-                position: absolute;
                 transform: translate(0px, -6px);
                 padding: 0 0 10 0;
                 box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
                     18px 10px 10px rgba(0, 0, 0, 0.2);
                 border-radius: 0px 0px 4px 4px;
-            }
+   
             .movie-info-wrapper{
                 padding-left: 8px;
                 padding-top: 0;
