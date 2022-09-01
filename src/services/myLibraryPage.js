@@ -151,7 +151,7 @@ export function getQueueMoviesInStorage() {
   } else {
     moviesContainer.innerHTML = `  <div class="warning-container">
                                     <p class="warning-title"> ${warningTextEng}</p>
-                                    <a class="warning-button" href="/index.html" data-btn-home="">
+                                    <a class="warning-button" href="./index.html" data-btn-home="">
                                         
                                         <p class="warning-inside-text">ADD</p>
                                         <p class="warning-card-inside-text">+</p>
