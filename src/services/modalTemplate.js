@@ -71,7 +71,7 @@ function cardMarkUp(filmObject) {
   let markupGenre = filmObject.genres;
   let cardGenre = markupGenre.map(genr => genr.name);
 
-  cardGenre: markupGenre.length > 0 ? cardGenre.join(', ') : 'Unknown';
+  // cardGenre: markupGenre.length > 0 ? cardGenre.join(', ') : 'Unknown';
 
   const markUp = `<h1 class="card__table-heder">${filmObject.title}</h1>
       <table class="card__table">
