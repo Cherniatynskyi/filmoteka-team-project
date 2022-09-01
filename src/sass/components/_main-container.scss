@@ -80,39 +80,49 @@
 
 .grid-movie-card{
     position: relative;
-    padding: 5px;
-    padding-bottom: 20px;
+    cursor: pointer;
+    padding-top: 8px;
+    padding-bottom: 10px;
 }
 
 .grid-movie-card:hover {
+    transform: translate(0px, -5px);
+        transition: $main-effects-option;
+        box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+            9px 10px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 0px 0px 4px 4px;
 
-    .movie-item {
-            padding: 0 0 10 8;
-            transform: translate(-10px, -10px);
-            box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-                9px 10px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 0px 0px 4px 4px;
-        }
+    .movie-info-wrapper {
+            padding-left: 6px;
+            padding-top: 0;
+    }
+    .movie-info {
+        padding-top: 5px;
+    }
 
     @media screen and (min-width: 768px) and (max-width: 1279px){
-        .movie-item{
-            position: absolute;
-            transform: translate(-10px, -10px);
-            padding: 0 0 20 10;
+        position: absolute;
+            transform: translate(0px, -5px);
+            padding: 0 0 20 0;
             box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
                 18px 10px 10px rgba(0, 0, 0, 0.2);
             border-radius: 0px 0px 4px 4px;
+        .movie-info-wrapper {
+            padding-left: 6px;
+            padding-top: 0;
         }
     }
 
         @media screen and (min-width: 1280px) {
-            .movie-item {
-                position: absolute;
-                transform: translate(-10px, -10px);
-                padding: 0 0 20 10;
+                transform: translate(0px, -6px);
+                padding: 0 0 10 0;
                 box-shadow: 10px 8px 6px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
                     18px 10px 10px rgba(0, 0, 0, 0.2);
                 border-radius: 0px 0px 4px 4px;
+   
+            .movie-info-wrapper{
+                padding-left: 8px;
+                padding-top: 0;
             }
         }
 }
@@ -140,4 +150,112 @@
         margin: -8px;
 
     }
+}
+
+.warning-container{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    padding-left: 0;
+    width: 100%;
+}
+
+.warning-title{
+    font-size: 46px;
+    line-height: 1.3;
+    font-weight: 300;
+
+    @media screen and (max-width: 768px) {
+        position: absolute;
+        padding: 10px;
+        left: 30;
+        font-size: 32px;
+            line-height: 1.3;
+            font-weight: 300;
+    }
+
+    @media screen and (max-width: 520px){
+        font-size: 22px;
+        }
+}
+
+.warning-button{
+    background-color: rgb(238, 237, 237);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    width: 390px;
+    height: 600px;
+    text-align: center;
+    padding: 120 30 120 30 ;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+
+    
+
+    &:hover{
+        transform: translate(0px, -5px);
+            transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                9px 10px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0px 0px 4px 4px;
+            border-color:transparent;
+             color:#161616;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background-position: 150% top;
+
+
+    }
+    @media screen and (max-width: 768px){
+        position: absolute;
+            width: 280px;
+            height: 400px;
+            top: 400;
+            left: 60px;
+
+            padding: 100 20 120 20
+        }
+    @media screen and (max-width: 610px) {
+            position: absolute;
+            width: 280px;
+            height: 400px;
+            top: 420;
+            left: 50px;
+        }
+    @media screen and (max-width: 520px) {
+            position: absolute;
+            width: 200px;
+            height: 310px;
+            top: 370;
+            left: 50px;
+            padding-top: 65px;
+        }
+
+
+}
+
+.warning-inside-text{
+    display: flex;
+    justify-content: center;
+    padding: auto;
+    align-items: center;
+    font-size: 60px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+        font-size: 40px;
+    }
+}
+
+.warning-card-inside-text{
+    margin-top: 60px;
+    font-size: 200px;
+    font-weight: 100;
+
+    @media screen and (max-width: 768px) {
+            font-size: 100px;
+        }
 }
