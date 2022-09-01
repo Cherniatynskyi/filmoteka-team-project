@@ -50,9 +50,9 @@ input:checked+.slider:before {
   
         margin-top: 45px;
         display: flex;
-        margin-right: 230px;
+        margin-right: 290px;
         margin-left: auto;
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 780px) {
                 margin-right: 190px;}
 }
 .slider.round:before {
