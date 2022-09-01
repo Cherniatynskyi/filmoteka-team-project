@@ -96,26 +96,38 @@ function cardMarkUp(filmObject) {
   cardTableContainer.insertAdjacentHTML('afterbegin', markUp);
 }
 
-export function addWatchedMoviesInStorage(filmObject) {
-  const localStorageArr = localStorage.getItem(KEY_WATCHED) || [];
-  const parsedArr = JSON.parse(localStorage.getItem(KEY_WATCHED)) || [];
-  if (!localStorageArr.includes(filmObject.id)) {
-    parsedArr.push(filmObject);
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(parsedArr));
+function addWatchedMoviesInStorage(addWatchedMovie) {
+  const watchedMovieInStorage = localStorage.getItem(KEY_WATCHED);
+  if (!watchedMovieInStorage) {
+    localStorage.setItem(KEY_WATCHED, JSON.stringify([addWatchedMovie]));
+    return;
   }
+  let watchedMovies = JSON.parse(watchedMovieInStorage);
+  const watchedMoviesInStorageArr = watchedMovies.find(item => item.id === addWatchedMovie.id);
+  if (watchedMoviesInStorageArr) {
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedMovies));
+  } else {
+    watchedMovies.push(addWatchedMovie);
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedMovies));
+  }
+}
 
-  return;
-}
-export function addQueueMoviesInStorage(filmObject) {
-  const localStorageArrq = localStorage.getItem(KEY_QUEUE) || [];
-  const parsedArrq = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
-  console.log(parsedArrq, 'распасеный массив');
-  if (!localStorageArrq.includes(filmObject.id)) {
-    parsedArrq.push(filmObject);
-    localStorage.setItem(KEY_QUEUE, JSON.stringify(parsedArrq));
+function addQueueMoviesInStorage(addQueueMovie) {
+  const queueMovieInStorage = localStorage.getItem(KEY_QUEUE);
+  if (!queueMovieInStorage) {
+    localStorage.setItem(KEY_QUEUE, JSON.stringify([addQueueMovie]));
+    return;
   }
-  return;
+  let queueMovies = JSON.parse(queueMovieInStorage);
+  const queueMoviesInStorageArr = queueMovies.find(item => item.id === addQueueMovie.id);
+  if (queueMoviesInStorageArr) {
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
+  } else {
+    queueMovies.push(addQueueMovie);
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
+  }
 }
+
 function trimMarkup(trim) {
   const trimMarkup = trim.toFixed(1);
   return trimMarkup;
