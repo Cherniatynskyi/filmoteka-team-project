@@ -10,7 +10,6 @@ const modalCardCont = document.querySelector('[data-modalCard]');
 const backdrop = document.querySelector('[backdrop]');
 const cardContMarking = document.querySelector('.card__cont-marking');
 const cardTableContainer = document.querySelector('.card__table');
-const addToLSButtons = document.querySelectorAll('[data-add-to]');
 
 openModalCard.addEventListener('click', onOpenModalCard);
 closeModalCard.addEventListener('click', onCloseModalCard);
@@ -106,6 +105,31 @@ function cardMarkUp(filmObject) {
         <p class="card__about-text">${filmObject.overview}</p>
       </div>`;
   cardTableContainer.insertAdjacentHTML('afterbegin', markUp);
+  const addToLSButtons = document.querySelectorAll('[data-add-to]');
+
+  const watchedMovie = JSON.parse(localStorage.getItem('watched'));
+  const queueMovie = JSON.parse(localStorage.getItem('queue'));
+
+  if (watchedMovie) {
+    if (watchedMovie.find(item => item.id === filmObject.id)) {
+      addToLSButtons[0].textContent = 'Remove from watched';
+      addToLSButtons[0].classList.remove('add');
+    } else {
+      addToLSButtons[0].textContent = 'Add to watched';
+      addToLSButtons[0].classList.add('add');
+    }
+  }
+
+  if (queueMovie) {
+    if (queueMovie.find(item => item.id === filmObject.id)) {
+      addToLSButtons[1].textContent = 'Remove from queue';
+      addToLSButtons[1].classList.remove('add');
+    } else {
+      addToLSButtons[1].textContent = 'Add to queue';
+      addToLSButtons[1].classList.add('add');
+    }
+  }
+
   addToLSButtons.forEach(btn => btn.addEventListener('click', onModalBtnClick));
 }
 
@@ -114,11 +138,14 @@ function onModalBtnClick(e) {
 
   const activeBtn = document.querySelector(`.modal-${addTo}`);
   
-  activeBtn.classList.contains('add')
-    ? addMoviesToStorage(addTo, currentMovie)
-    : removeMovieFromWatched(addTo, currentMovie);
+  if (activeBtn.classList.contains('add')) {
+    addMoviesToStorage(addTo, currentMovie);
+    toggleBtn(addTo);
+  } else {
+    removeMovieFromWatched(addTo, currentMovie);
+    toggleBtn(addTo);
+  }
   
-  toggleBtn(addTo);
   checkPlace(activeBtn);
 }
 
@@ -132,7 +159,7 @@ function toggleBtn(key) {
   const classActive = 'modal__btn--active';
   const btn = document.querySelector(`.modal-${key}`);
 
-  if (btn.classList.contains(classActive)) {
+  if (!btn.classList.contains('add')) {
     btn.classList.remove(classActive);
     btn.classList.add('add');
     btn.textContent = 'Add to ' + key;
