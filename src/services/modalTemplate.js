@@ -7,6 +7,7 @@ const modalCardCont = document.querySelector('[data-modalCard]');
 const backdrop = document.querySelector('[backdrop]');
 const cardContMarking = document.querySelector('.card__cont-marking');
 const cardTableContainer = document.querySelector('.card__table');
+const btnWrapper = document.querySelector(".card__button")
 
 openModalCard.addEventListener('click', onOpenModalCard);
 closeModalCard.addEventListener('click', onCloseModalCard);
@@ -17,6 +18,8 @@ let currentMovie = null;
 
 function onCloseModalCard() {
   modalCardCont.classList.add('no-activ');
+  btnWrapper.classList.remove("visually-hidden");
+
   const htmlEl = document.getElementsByTagName('HTML')[0];
   htmlEl.classList.remove('no-scroll');
   cardContMarking.innerHTML = '';
@@ -39,15 +42,27 @@ function onEscClick(evt) {
 
 function onOpenModalCard(event) {
   if (event.target.classList.contains('grid-movie-card')) {
+
     const filmID = event.target.attributes.id.value;
-
-    getMovieByID(filmID).then(res => cardMarkUp(res));
-
     modalCardCont.classList.remove('no-activ');
     const htmlEl = document.getElementsByTagName('HTML')[0];
     htmlEl.classList.add('no-scroll');
+    getMovieByID(filmID).then(res => cardMarkUp(res)).catch(error => { markupError() });
+
+    // modalCardCont.classList.remove('no-activ');
+    // const htmlEl = document.getElementsByTagName('HTML')[0];
+    // htmlEl.classList.add('no-scroll');
   }
   return;
+}
+
+function markupError() {
+  const markup = `<div class="no-film-placeholder">
+        <p>Unfortunatuly, there are no information about this film.</p>
+        <p>Please, choose other!</p>
+      </div>`
+  cardContMarking.insertAdjacentHTML('afterbegin', markup);
+  btnWrapper.classList.add("visually-hidden");
 }
 
 function cardMarkUp(filmObject) {
