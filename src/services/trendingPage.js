@@ -150,7 +150,7 @@ async function startPaginationTranding(page) {
       
     }
     console.log(page);
-    const responseArr = await getMovies('trending/movie/day');
+    const responseArr = await getMoviesOnSearch('trending/movie/day',null, page);
     // checkPages(responseArr);
     renderTrendingMovies(responseArr.data.results);
     checkLastPage(page)
