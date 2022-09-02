@@ -53,14 +53,19 @@ input:checked+.slider:before {
         margin-right: 290px;
         margin-left: auto;
         @media screen and (max-width:1200px) {
-                margin-right: 190px;
+                margin-right: 200px;
             }
                                 @media screen and (min-width: 1201px) and (max-width:1399px)  {
-                                    margin-right: 290px;
+                                    margin-right: 300px;
                                 }
-                                                                @media screen and (min-width:1400px) {
+                                                                @media screen and (min-width:1400px) and (max-width:1600px){
                                                                     margin-right: 350px;
                                                                 }
+                                                                                                                                 @media screen and (min-width:1601px) and (max-width:1900px) {
+                                                            @media screen and (min-width:1601px) and (max-width:1900px) {
+                                                                    margin-right: 500px;
+                                                                }                                                                         margin-right: 500px;
+                                                                                                                                 }
 }
 .slider.round:before {
     border-radius: 50%;
