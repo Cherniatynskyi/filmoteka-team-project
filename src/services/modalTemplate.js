@@ -48,8 +48,9 @@ function onOpenModalCard(event) {
   if (event.target.classList.contains('grid-movie-card')) {
     const filmID = event.target.attributes.id.value;
 
-    // addToQueueButton.classList.remove('card-buton-change')
-    // addToWatchedButton.classList.remove('card-buton-change')
+    addToQueueButton.classList.remove('card-buton-change');
+    addToWatchedButton.classList.remove('card-buton-change');
+
 
     getMovieByID(filmID).then(res => cardMarkUp(res));
 
@@ -83,6 +84,8 @@ function cardMarkUp(filmObject) {
   } else {
     cardGenre = "No information"
   }
+
+  // cardGenre: markupGenre.length > 0 ? cardGenre.join(', ') : 'Unknown';
 
   const markUp = `<h1 class="card__table-heder">${filmObject.title}</h1>
       <table class="card__table">
@@ -125,13 +128,33 @@ function addMoviesToStorage(key, movie) {
   }
   let watchedMovies = JSON.parse(watchedMovieInStorage);
   const watchedMoviesInStorageArr = watchedMovies.find(
-    item => item.id === movie.id
+    item => item.id === addWatchedMovie.id
+
   );
   if (watchedMoviesInStorageArr) {
     localStorage.setItem(key, JSON.stringify(watchedMovies));
   } else {
-    watchedMovies.push(movie);
-    localStorage.setItem(key, JSON.stringify(watchedMovies));
+    watchedMovies.push(addWatchedMovie);
+    localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedMovies));
+  }
+}
+
+function addQueueMoviesInStorage(addQueueMovie) {
+  const queueMovieInStorage = localStorage.getItem(KEY_QUEUE);
+  if (!queueMovieInStorage) {
+    localStorage.setItem(KEY_QUEUE, JSON.stringify([addQueueMovie]));
+    return;
+  }
+  let queueMovies = JSON.parse(queueMovieInStorage);
+  const queueMoviesInStorageArr = queueMovies.find(
+    item => item.id === addQueueMovie.id
+  );
+  if (queueMoviesInStorageArr) {
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
+  } else {
+    queueMovies.push(addQueueMovie);
+    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
+
   }
 }
 
@@ -198,28 +221,27 @@ function removeMovieFromQueue(movie) {
   getQueueMoviesInStorage();
 }
 
+// Dynamic changing text-content on modal buttons
 
-// Dynamic changing text-content on modal buttons 
+addToQueueButton.addEventListener('click', () => {
+  if (addToQueueButton.textContent == 'Remove from queue') {
+    addToQueueButton.textContent = 'Removed from Queue';
+    addToQueueButton.classList.add('card-buton-change');
+  }
+  if (addToQueueButton.textContent == 'Add to queue') {
+    addToQueueButton.textContent = 'Added to Queue';
+    addToQueueButton.classList.add('card-buton-change');
+  }
+});
 
-// addToQueueButton.addEventListener('click', () => {
-//   if (addToQueueButton.textContent == "Remove from queue") {
-//     addToQueueButton.textContent = "Removed from Queue"
-//     addToQueueButton.classList.add('card-buton-change')
-//   }
-//   if (addToQueueButton.textContent == "Add to queue") {
-//     addToQueueButton.textContent = "Added to Queue"
-//     addToQueueButton.classList.add('card-buton-change')
-//   }
-// });
+addToWatchedButton.addEventListener('click', () => {
+  if (addToWatchedButton.textContent == 'Remove from watched') {
+    addToWatchedButton.textContent = 'Removed from watched';
+    addToWatchedButton.classList.add('card-buton-change');
+  }
+  if (addToWatchedButton.textContent == 'Add to watched') {
+    addToWatchedButton.textContent = 'Added to Watched';
+    addToWatchedButton.classList.add('card-buton-change');
+  }
+});
 
-// addToWatchedButton.addEventListener('click', () => {
-//   if (addToWatchedButton.textContent == "Remove from watched") {
-//     addToWatchedButton.textContent = "Removed from watched"
-//     addToWatchedButton.classList.add('card-buton-change')
-    
-//   }
-//   if (addToWatchedButton.textContent == "Add to watched") {
-//     addToWatchedButton.textContent = "Added to Watched"
-//     addToWatchedButton.classList.add('card-buton-change')
-//   }
-// });
