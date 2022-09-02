@@ -157,7 +157,7 @@ function removeMovieFromWatched(key, movie) {
   const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
   if (includesMovie) {
     const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(updatedArr));
+    localStorage.setItem(key, JSON.stringify(updatedArr));
   }
 }
 
