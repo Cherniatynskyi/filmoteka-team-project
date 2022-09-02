@@ -52,7 +52,7 @@ function onOpenModalCard(event) {
 
 function cardMarkUp(filmObject) {
 
-  let markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  let markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w342${filmObject.poster_path}" alt="${filmObject.title}" />`;
   // if (filmObject.poster_path) {
   //   markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
   // } else {
