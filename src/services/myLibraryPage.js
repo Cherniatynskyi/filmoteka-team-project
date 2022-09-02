@@ -18,7 +18,8 @@ export function getWatchedMoviesInStorage() {
   const moviesWatchedInLocal =
     JSON.parse(localStorage.getItem('watched')) || [];
   const getData = moviesWatchedInLocal;
-
+  btnGetToQueue.classList.remove('current__library-button');
+  btnGetToWatched.classList.add('current__library-button');
   if (getData.length >= 1) {
     const markup = moviesWatchedInLocal
       .map(item => {
@@ -77,7 +78,8 @@ export function getWatchedMoviesInStorage() {
 export function getQueueMoviesInStorage() {
   const moviesQueueInLocal = JSON.parse(localStorage.getItem('queue')) || [];
   const getData = moviesQueueInLocal;
-
+  btnGetToWatched.classList.remove('current__library-button');
+  btnGetToQueue.classList.add('current__library-button');
   if (getData.length >= 1) {
     const markup = getData
       .map(item => {
@@ -131,16 +133,14 @@ export function getQueueMoviesInStorage() {
       .join('');
     moviesListContainer.innerHTML = markup;
   } else {
-    moviesContainer.innerHTML = `  <div class="warning-container">
-                                    <p class="warning-title"> ${warningTextEng}</p>
-                                    <a class="warning-button" href="./index.html" data-btn-home="">
-                                        
-                                        <p class="warning-inside-text">ADD</p>
-                                        <p class="warning-card-inside-text">+</p>
-                                        
-                                     
-                                    </a>
-                                  </div>`;
+    moviesListContainer.innerHTML = `
+    <div class="warning-container">
+    <p class="warning-title"> ${warningTextEng}</p>
+    <a class="warning-button" href="./index.html" data-btn-home="">
+        <p class="warning-inside-text">ADD</p>
+        <p class="warning-card-inside-text">+</p>
+    </a>
+  </div>`;
   }
 }
 

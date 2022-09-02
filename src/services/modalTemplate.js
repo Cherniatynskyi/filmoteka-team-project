@@ -139,7 +139,7 @@ function onModalBtnClick(e) {
     removeMovieFromWatched(addTo, currentMovie);
     toggleBtn(addTo);
   }
-  
+  addTo === 'watched' ? getWatchedMoviesInStorage() : getQueueMoviesInStorage();
   checkPlace(activeBtn);
 }
 
@@ -182,6 +182,7 @@ function addMoviesToStorage(key, movie) {
     watchedMovies.push(movie);
     localStorage.setItem(key, JSON.stringify(watchedMovies));
   }
+  
 }
 
 
