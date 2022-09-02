@@ -38,7 +38,7 @@ function createTrendingCard(moviesArray) {
       <div class="img-wrapper">
         <img
           class="movie-img"
-          src="https://image.tmdb.org/t/p/w500${moviesArray.poster_path}"
+          src="https://image.tmdb.org/t/p/w342${moviesArray.poster_path}"
           alt="${properTitle}"
           loading="lazy"
         />
@@ -236,7 +236,7 @@ export function cardMarkup(moviesArr) {
       <div class="movie-item">
       <div class="img-wrapper">
         <img class="movie-img"
-        src="http://image.tmdb.org/t/p/w500${item.poster_path}" 
+        src="http://image.tmdb.org/t/p/w342${item.poster_path}" 
         alt="${item.title}"
         loading="lazy" />
         </div>
