@@ -72,6 +72,15 @@ export function getWatchedMoviesInStorage() {
       })
       .join('');
     moviesListContainer.innerHTML = markup;
+  } else {
+    moviesListContainer.innerHTML = `
+    <div class="warning-container">
+    <p class="warning-title"> ${warningTextEng}</p>
+    <a class="warning-button" href="./index.html" data-btn-home="">
+        <p class="warning-inside-text">ADD</p>
+        <p class="warning-card-inside-text">+</p>
+    </a>
+  </div>`;
   }
 }
 
