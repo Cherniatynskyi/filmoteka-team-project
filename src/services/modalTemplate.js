@@ -17,8 +17,6 @@ closeModalCard.addEventListener('click', onCloseModalCard);
 modalCardCont.addEventListener('click', onBackModalDropClick);
 window.addEventListener('keydown', onEscClick);
 
-const KEY_WATCHED = 'watched-movies-in-storage';
-const KEY_QUEUE = 'queue-movies-in-storage';
 let currentMovie = null;
 
 function onCloseModalCard() {
@@ -47,10 +45,6 @@ function onOpenModalCard(event) {
   if (event.target.classList.contains('grid-movie-card')) {
     const filmID = event.target.attributes.id.value;
 
-    addToQueueButton.classList.remove('card-buton-change');
-    addToWatchedButton.classList.remove('card-buton-change');
-
-
     getMovieByID(filmID).then(res => cardMarkUp(res));
 
     modalCardCont.classList.remove('no-activ');
@@ -61,8 +55,10 @@ function onOpenModalCard(event) {
 }
 
 function cardMarkUp(filmObject) {
-  checkMovieByIdWatched(filmObject, KEY_WATCHED);
-  checkMovieByIdQueue(filmObject, KEY_QUEUE);
+
+  // checkMovieByIdWatched(filmObject, 'watched');
+  // checkMovieByIdQueue(filmObject, 'queue');
+
   let markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
   // if (filmObject.poster_path) {
   //   markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
@@ -222,27 +218,13 @@ function trimMarkup(trim) {
 //   }
 // }
 
-function removeMovieFromWatched(movie) {
-  const localStorageArr = JSON.parse(localStorage.getItem(KEY_WATCHED));
-  const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
-  if (includesMovie) {
-    const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(updatedArr));
-  }
-
-  getWatchedMoviesInStorage();
-}
-
-function removeMovieFromQueue(movie) {
-  const localStorageArr = JSON.parse(localStorage.getItem(KEY_QUEUE));
-  const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
-  if (includesMovie) {
-    const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
-    localStorage.setItem(KEY_QUEUE, JSON.stringify(updatedArr));
-  }
-
-  getQueueMoviesInStorage();
-}
+// function removeMovieFromWatched(movie) {
+//   const localStorageArr = JSON.parse(localStorage.getItem(KEY_WATCHED));
+//   const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
+//   if (includesMovie) {
+//     const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
+//     localStorage.setItem(KEY_WATCHED, JSON.stringify(updatedArr));
+//   }
 
 // Dynamic changing text-content on modal buttons
 
@@ -257,14 +239,28 @@ addToQueueButton.addEventListener('click', () => {
   }
 });
 
-addToWatchedButton.addEventListener('click', () => {
-  if (addToWatchedButton.textContent == 'Remove from watched') {
-    addToWatchedButton.textContent = 'Removed from watched';
-    addToWatchedButton.classList.add('card-buton-change');
-  }
-  if (addToWatchedButton.textContent == 'Add to watched') {
-    addToWatchedButton.textContent = 'Added to Watched';
-    addToWatchedButton.classList.add('card-buton-change');
-  }
-});
+// addToQueueButton.addEventListener('click', () => {
+//   if (addToQueueButton.textContent == "Remove from queue") {
+//     addToQueueButton.textContent = "Removed from Queue"
+//     addToQueueButton.classList.add('card-buton-change')
+//   }
+//   if (addToQueueButton.textContent == "Add to queue") {
+//     addToQueueButton.textContent = "Added to Queue"
+//     addToQueueButton.classList.add('card-buton-change')
+//   }
+// });
+//   getWatchedMoviesInStorage();
+// }
+
+// function removeMovieFromQueue(movie) {
+//   const localStorageArr = JSON.parse(localStorage.getItem(KEY_QUEUE));
+//   const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
+//   if (includesMovie) {
+//     const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
+//     localStorage.setItem(KEY_QUEUE, JSON.stringify(updatedArr));
+//   }
+
+//   getQueueMoviesInStorage();
+// }
+
 
