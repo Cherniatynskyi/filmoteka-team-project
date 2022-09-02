@@ -10,8 +10,7 @@ const modalCardCont = document.querySelector('[data-modalCard]');
 const backdrop = document.querySelector('[backdrop]');
 const cardContMarking = document.querySelector('.card__cont-marking');
 const cardTableContainer = document.querySelector('.card__table');
-const addToWatchedButton = document.querySelector('[data-add-to-watched]');
-const addToQueueButton = document.querySelector('[data-add-to-queue]');
+const addToLSButtons = document.querySelectorAll('[data-add-to]');
 
 openModalCard.addEventListener('click', onOpenModalCard);
 closeModalCard.addEventListener('click', onCloseModalCard);
@@ -20,6 +19,7 @@ window.addEventListener('keydown', onEscClick);
 
 const KEY_WATCHED = 'watched-movies-in-storage';
 const KEY_QUEUE = 'queue-movies-in-storage';
+let currentMovie = null;
 
 function onCloseModalCard() {
   modalCardCont.classList.add('no-activ');
@@ -51,6 +51,7 @@ function onOpenModalCard(event) {
     addToQueueButton.classList.remove('card-buton-change');
     addToWatchedButton.classList.remove('card-buton-change');
 
+
     getMovieByID(filmID).then(res => cardMarkUp(res));
 
     modalCardCont.classList.remove('no-activ');
@@ -63,13 +64,26 @@ function onOpenModalCard(event) {
 function cardMarkUp(filmObject) {
   checkMovieByIdWatched(filmObject, KEY_WATCHED);
   checkMovieByIdQueue(filmObject, KEY_QUEUE);
-  const markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  let markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  // if (filmObject.poster_path) {
+  //   markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  // } else {
+  //   markUPImg = `<img class="card__img" src="./img/placeholder.jpeg" alt="${filmObject.title}" />`;
+  // }
+
+  currentMovie = filmObject;
   cardContMarking.insertAdjacentHTML('afterbegin', markUPImg);
+
   const trimMarkupVote = trimMarkup(filmObject.vote_average);
   const trimMarkupPopular = trimMarkup(filmObject.popularity);
 
   let markupGenre = filmObject.genres;
-  let cardGenre = markupGenre.map(genr => genr.name);
+  let cardGenre
+  if (!filmObject.genres.length === 0) {
+    cardGenre = markupGenre.map(genr => genr.name);
+  } else {
+    cardGenre = "No information"
+  }
 
   // cardGenre: markupGenre.length > 0 ? cardGenre.join(', ') : 'Unknown';
 
@@ -97,20 +111,28 @@ function cardMarkUp(filmObject) {
         <p class="card__about-text">${filmObject.overview}</p>
       </div>`;
   cardTableContainer.insertAdjacentHTML('afterbegin', markUp);
+  addToLSButtons.forEach(btn => btn.addEventListener('click', onModalBtnClick));
 }
 
-function addWatchedMoviesInStorage(addWatchedMovie) {
-  const watchedMovieInStorage = localStorage.getItem(KEY_WATCHED);
+function onModalBtnClick(e) {
+  const { addTo } = e.currentTarget.dataset;
+
+  addMoviesToStorage(addTo, currentMovie);
+}
+
+function addMoviesToStorage(key, movie) {
+  const watchedMovieInStorage = localStorage.getItem(key);
   if (!watchedMovieInStorage) {
-    localStorage.setItem(KEY_WATCHED, JSON.stringify([addWatchedMovie]));
+    localStorage.setItem(key, JSON.stringify([movie]));
     return;
   }
   let watchedMovies = JSON.parse(watchedMovieInStorage);
   const watchedMoviesInStorageArr = watchedMovies.find(
     item => item.id === addWatchedMovie.id
+
   );
   if (watchedMoviesInStorageArr) {
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedMovies));
+    localStorage.setItem(key, JSON.stringify(watchedMovies));
   } else {
     watchedMovies.push(addWatchedMovie);
     localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedMovies));
@@ -132,6 +154,7 @@ function addQueueMoviesInStorage(addQueueMovie) {
   } else {
     queueMovies.push(addQueueMovie);
     localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
+
   }
 }
 
@@ -140,41 +163,41 @@ function trimMarkup(trim) {
   return trimMarkup;
 }
 
-function checkMovieByIdWatched(movie, key) {
-  const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
-  console.log(lockalStorageId, 'Просмотренные фильмы');
-  const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
-  console.log(includesMovie, 'нука');
-  if (!includesMovie) {
-    addToWatchedButton.addEventListener('click', () =>
-      addWatchedMoviesInStorage(movie)
-    );
-    addToWatchedButton.textContent = 'Add to watched';
-  } else if (includesMovie) {
-    addToWatchedButton.addEventListener('click', () =>
-      removeMovieFromWatched(movie, key)
-    );
-    addToWatchedButton.textContent = 'Remove from watched';
-  }
-}
-function checkMovieByIdQueue(movie, key) {
-  const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
-  console.log(lockalStorageId, 'Просмотренные фильмы');
-  const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
+// function checkMovieByIdWatched(movie, key) {
+//   const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
+//   console.log(lockalStorageId, 'Просмотренные фильмы');
+//   const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
+//   console.log(includesMovie, 'нука');
+//   if (!includesMovie) {
+//     addToWatchedButton.addEventListener('click', () =>
+//       addWatchedMoviesInStorage(movie)
+//     );
+//     addToWatchedButton.textContent = 'Add to watched';
+//   } else if (includesMovie) {
+//     addToWatchedButton.addEventListener('click', () =>
+//       removeMovieFromWatched(movie, key)
+//     );
+//     addToWatchedButton.textContent = 'Remove from watched';
+//   }
+// }
+// function checkMovieByIdQueue(movie, key) {
+//   const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
+//   console.log(lockalStorageId, 'Просмотренные фильмы');
+//   const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
 
-  if (!includesMovie) {
-    console.log(lockalStorageId.includes(includesMovie));
-    addToQueueButton.addEventListener('click', () =>
-      addQueueMoviesInStorage(movie)
-    );
-    addToQueueButton.textContent = 'Add to queue';
-  } else if (includesMovie) {
-    addToQueueButton.addEventListener('click', () =>
-      removeMovieFromQueue(movie, key)
-    );
-    addToQueueButton.textContent = 'Remove from queue';
-  }
-}
+//   if (!includesMovie) {
+//     console.log(lockalStorageId.includes(includesMovie));
+//     addToQueueButton.addEventListener('click', () =>
+//       addQueueMoviesInStorage(movie)
+//     );
+//     addToQueueButton.textContent = 'Add to queue';
+//   } else if (includesMovie) {
+//     addToQueueButton.addEventListener('click', () =>
+//       removeMovieFromQueue(movie, key)
+//     );
+//     addToQueueButton.textContent = 'Remove from queue';
+//   }
+// }
 
 function removeMovieFromWatched(movie) {
   const localStorageArr = JSON.parse(localStorage.getItem(KEY_WATCHED));
@@ -221,3 +244,4 @@ addToWatchedButton.addEventListener('click', () => {
     addToWatchedButton.classList.add('card-buton-change');
   }
 });
+

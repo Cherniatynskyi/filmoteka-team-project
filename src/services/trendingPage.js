@@ -107,7 +107,7 @@ export function getProperGenre(idArray) {
       }
     });
   }
-  if (correctGenres.length >= 2) {
+  if (correctGenres.length > 2) {
     return correctGenres.slice(0, 2).join() + ', Other...';
   }
   return correctGenres.join();
