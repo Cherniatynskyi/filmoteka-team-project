@@ -44,7 +44,6 @@ function onEscClick(evt) {
 }
 
 function onOpenModalCard(event) {
-  console.log(event.target);
   if (event.target.classList.contains('grid-movie-card')) {
     const filmID = event.target.attributes.id.value;
 
@@ -118,6 +117,30 @@ function onModalBtnClick(e) {
   const { addTo } = e.currentTarget.dataset;
 
   addMoviesToStorage(addTo, currentMovie);
+  toggleBtn(addTo);
+
+  const activeBtn = document.querySelector(`.modal-${addTo}`);
+  checkPlace(activeBtn);
+}
+
+function checkPlace(btn) {
+  return (
+    btn.classList.contains('is-active')
+  );
+}
+
+function toggleBtn(key) {
+  const classActive = 'modal__btn--active';
+  const btn = document.querySelector(`.modal-${key}`);
+
+  if (btn.classList.contains(classActive)) {
+    btn.classList.remove(classActive);
+    btn.textContent = 'Add to ' + key;
+    return;
+  }
+
+  btn.classList.add(classActive);
+  btn.textContent = 'Remove from ' + key;
 }
 
 function addMoviesToStorage(key, movie) {
