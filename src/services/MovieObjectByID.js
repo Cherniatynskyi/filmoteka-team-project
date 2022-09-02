@@ -4,7 +4,6 @@ export async function getMovieByID(id) {
     const nul = null;
     try {
         const movieObj = await getMovies(`/movie/${id}`, nul, 1)
-        console.log(movieObj.data); //прилітає об'єкт з детальною інформацією
         return movieObj.data
     } catch (error) {
         console.error(error);
