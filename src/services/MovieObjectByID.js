@@ -1,9 +1,9 @@
-import { getMovies } from "./getMovies";
+import { getMoviesOnSearch } from "./getMovies";
 
 export async function getMovieByID(id) {
     const nul = null;
     try {
-        const movieObj = await getMovies(`/movie/${id}`, nul, 1)
+        const movieObj = await getMoviesOnSearch(`/movie/${id}`, nul, 1)
         return movieObj.data
     } catch (error) {
         console.error(error);

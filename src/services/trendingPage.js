@@ -1,8 +1,8 @@
-import { getMovies } from './getMovies';
+import { getMovies, getMoviesOnSearch } from './getMovies';
 import { addMoviesInStorage } from './addFindMovieInStorage';
 // import { checkAndMarkup, cardMarkup, checkPages, checkLastPage } from './findMovies';
 
-getMovies('genre/movie/list', null, 1).then(response => {
+getMovies('genre/movie/list').then(response => {
   localStorage.setItem('genres', JSON.stringify(response.data.genres));
 });
 
@@ -14,7 +14,7 @@ const trendingMoviesContainer = document.querySelector('.movie-grid-list');
 const formError = document.querySelector('.form__error');
 
 async function getTrending() {
-  const trendingArray = await getMovies('trending/movie/day', nul, 1);
+  const trendingArray = await getMovies('trending/movie/day');
   const trendingLog = trendingArray.data.results;
   renderTrendingMovies(trendingLog);
   
@@ -150,7 +150,7 @@ async function startPaginationTranding(page) {
       
     }
     console.log(page);
-    const responseArr = await getMovies('trending/movie/day', nul, page);
+    const responseArr = await getMovies('trending/movie/day');
     // checkPages(responseArr);
     renderTrendingMovies(responseArr.data.results);
     checkLastPage(page)
@@ -174,7 +174,7 @@ async function findMovies(e) {
   e.preventDefault();
   request = e.target.firstElementChild.value;
   try {
-    const responseArr = await getMovies('search/movie', request, 1);
+    const responseArr = await getMoviesOnSearch('search/movie', request, 1);
     totalPages = responseArr.data.total_pages;
     if (totalPages > 0) {
       page = 1;
@@ -334,7 +334,7 @@ async function startPagination(page) {
     if (!formError.classList.contains('is-hidden')) {
       document.querySelector(".form__input").value = "";
     }
-    const responseArr = await getMovies('search/movie', previousRequest, page);
+    const responseArr = await getMoviesOnSearch('search/movie', previousRequest, page);
  
     errorIsHidden();
     checkPages(responseArr);

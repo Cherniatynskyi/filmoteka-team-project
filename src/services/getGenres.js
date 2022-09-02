@@ -1,5 +1,5 @@
-import { getMovies } from './getMovies';
+import { getMoviesOnSearch } from './getMovies';
 
-getMovies('genre/movie/list', null, 1).then(response => {
+getMoviesOnSearch('genre/movie/list', null, 1).then(response => {
   localStorage.setItem('genres', JSON.stringify(response.data.genres));
 });
