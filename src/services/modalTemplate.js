@@ -152,35 +152,17 @@ function addMoviesToStorage(key, movie) {
   }
   let watchedMovies = JSON.parse(watchedMovieInStorage);
   const watchedMoviesInStorageArr = watchedMovies.find(
-    item => item.id === addWatchedMovie.id
+    item => item.id === movie.id
 
   );
   if (watchedMoviesInStorageArr) {
     localStorage.setItem(key, JSON.stringify(watchedMovies));
   } else {
-    watchedMovies.push(addWatchedMovie);
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedMovies));
+    watchedMovies.push(movie);
+    localStorage.setItem(key, JSON.stringify(watchedMovies));
   }
 }
 
-function addQueueMoviesInStorage(addQueueMovie) {
-  const queueMovieInStorage = localStorage.getItem(KEY_QUEUE);
-  if (!queueMovieInStorage) {
-    localStorage.setItem(KEY_QUEUE, JSON.stringify([addQueueMovie]));
-    return;
-  }
-  let queueMovies = JSON.parse(queueMovieInStorage);
-  const queueMoviesInStorageArr = queueMovies.find(
-    item => item.id === addQueueMovie.id
-  );
-  if (queueMoviesInStorageArr) {
-    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
-  } else {
-    queueMovies.push(addQueueMovie);
-    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
-
-  }
-}
 
 function removeMovieFromWatched(key, movie) {
   const localStorageArr = JSON.parse(localStorage.getItem(key));
