@@ -1,16 +1,8 @@
-// import { getProperGenre } from './trendingPage';
-// import { getMovieByID } from "./MovieObjectByID";
-// import {  } from "./modalTemplate";
-
 const moviesContainer = document.querySelector('.container');
 const moviesListContainer = document.querySelector('.movie-grid-list');
-// const btnAddToWatched = document.querySelector(".btn-add-watched");
-// const btnAddToQueue = document.querySelector(".card__button-text");
 const btnGetToWatched = document.querySelector('[data-action ="watched"]');
 const btnGetToQueue = document.querySelector('[data-action ="queue"]');
 
-// btnAddToWatched.addEventListener("click", addWatchedMoviesInStorage);
-// btnAddToQueue.addEventListener("click", addQueueMoviesInStorage);
 btnGetToWatched.addEventListener('click', getWatchedMoviesInStorage);
 btnGetToQueue.addEventListener('click', getQueueMoviesInStorage);
 
@@ -19,17 +11,13 @@ const warningTextUa =
 const warningTextEng =
   ' Unfortunately, there is no movie here yet. Therefore, we have selected the most popular movies especially for you. Happy viewing!';
 
-const KEY_WATCHED = 'watched-movies-in-storage';
-const KEY_QUEUE = 'queue-movies-in-storage';
 
 getWatchedMoviesInStorage();
 
 export function getWatchedMoviesInStorage() {
   const moviesWatchedInLocal =
-    JSON.parse(localStorage.getItem(KEY_WATCHED)) || [];
+    JSON.parse(localStorage.getItem('watched')) || [];
   const getData = moviesWatchedInLocal;
-  // console.log('getData', getData);
-  // console.log(JSON.parse(getData.length));
 
   if (getData.length >= 1) {
     const markup = moviesWatchedInLocal
@@ -87,16 +75,12 @@ export function getWatchedMoviesInStorage() {
 }
 
 export function getQueueMoviesInStorage() {
-  const moviesQueueInLocal = JSON.parse(localStorage.getItem(KEY_QUEUE)) || [];
+  const moviesQueueInLocal = JSON.parse(localStorage.getItem('queue')) || [];
   const getData = moviesQueueInLocal;
-  // console.log('getData', getData);
-  // console.log(JSON.parse(getData.length));
 
   if (getData.length >= 1) {
-    // console.log(getData, 'get data in if');
     const markup = getData
       .map(item => {
-        // console.log(item, 'item');
         const dateMarkup = getYear(item.release_date);
         const voteMarkup = getRating(item.vote_average);
         let genrArr = item.genres;
@@ -109,7 +93,6 @@ export function getQueueMoviesInStorage() {
           : properGenre;
 
         if (item.poster_path) {
-          // console.log('Приет');
           return `<li class="grid-movie-card" id="${item.id}">
       <div class="movie-item">
       <div class="img-wrapper">
@@ -146,7 +129,6 @@ export function getQueueMoviesInStorage() {
         }
       })
       .join('');
-    // console.log(markup);
     moviesListContainer.innerHTML = markup;
   } else {
     moviesContainer.innerHTML = `  <div class="warning-container">
@@ -171,29 +153,3 @@ function getRating(vote) {
   const voteAdapted = vote.toFixed(2);
   return voteAdapted;
 }
-
-// export function addWatchedMoviesInStorage() {
-//   const localStorageArr = localStorage.getItem(KEY_WATCHED) || [];
-//   console.log('Before', localStorageArr);
-//   if (!localStorageArr.includes(filmObject.id)) {
-//     moviesWatchedInLocal.push(filmObject);
-//     console.log('In if', moviesWatchedInLocal);
-
-//     localStorage.setItem(KEY_WATCHED, JSON.stringify(moviesWatchedInLocal));
-//     getWatchedMoviesInStorage();
-//   }
-//   return;
-// }
-
-// export function addQueueMoviesInStorage() {
-//   const localStorageArr = localStorage.getItem(KEY_QUEUE) || [];
-//   console.log('Before', localStorageArr);
-//   if (!localStorageArr.includes(filmObject.id)) {
-//     moviesQueueInLocal.push(filmObject);
-//     console.log('In if', moviesQueueInLocal);
-
-//     localStorage.setItem(KEY_QUEUE, JSON.stringify(moviesQueueInLocal));
-//     getQueueMoviesInStorage();
-//   }
-//   return;
-// }

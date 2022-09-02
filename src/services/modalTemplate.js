@@ -1,8 +1,5 @@
 import { getMovieByID } from './MovieObjectByID';
-import {
-  getWatchedMoviesInStorage,
-  getQueueMoviesInStorage,
-} from './myLibraryPage';
+import { getWatchedMoviesInStorage, getQueueMoviesInStorage } from './myLibraryPage';
 
 const openModalCard = document.querySelector('[data-modalCard-open]');
 const closeModalCard = document.querySelector('[data-modalCard-close]');
@@ -54,9 +51,6 @@ function onOpenModalCard(event) {
 }
 
 function cardMarkUp(filmObject) {
-
-  // checkMovieByIdWatched(filmObject, 'watched');
-  // checkMovieByIdQueue(filmObject, 'queue');
 
   let markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
   // if (filmObject.poster_path) {
@@ -204,39 +198,3 @@ function trimMarkup(trim) {
   const trimMarkup = trim.toFixed(1);
   return trimMarkup;
 }
-
-// function checkMovieByIdWatched(movie, key) {
-//   const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
-//   console.log(lockalStorageId, 'Просмотренные фильмы');
-//   const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
-//   console.log(includesMovie, 'нука');
-//   if (!includesMovie) {
-//     addToWatchedButton.addEventListener('click', () =>
-//       addWatchedMoviesInStorage(movie)
-//     );
-//     addToWatchedButton.textContent = 'Add to watched';
-//   } else if (includesMovie) {
-//     addToWatchedButton.addEventListener('click', () =>
-//       removeMovieFromWatched(movie, key)
-//     );
-//     addToWatchedButton.textContent = 'Remove from watched';
-//   }
-// }
-// function checkMovieByIdQueue(movie, key) {
-//   const lockalStorageId = JSON.parse(localStorage.getItem(key)) || [];
-//   console.log(lockalStorageId, 'Просмотренные фильмы');
-//   const includesMovie = lockalStorageId.find(elem => elem.id === movie.id);
-
-//   if (!includesMovie) {
-//     console.log(lockalStorageId.includes(includesMovie));
-//     addToQueueButton.addEventListener('click', () =>
-//       addQueueMoviesInStorage(movie)
-//     );
-//     addToQueueButton.textContent = 'Add to queue';
-//   } else if (includesMovie) {
-//     addToQueueButton.addEventListener('click', () =>
-//       removeMovieFromQueue(movie, key)
-//     );
-//     addToQueueButton.textContent = 'Remove from queue';
-//   }
-// }
