@@ -9,7 +9,7 @@ btnGetToQueue.addEventListener('click', getQueueMoviesInStorage);
 const warningTextUa =
   'На жаль тут ще не має жодного фільму. Тому спеціально для тебе ми підібрали найпопулярніші фільми. Приємного переглядцу!';
 const warningTextEng =
-  ' Unfortunately, there is no movie here yet. Therefore, we have selected the most popular movies especially for you. Happy viewing!';
+  'Sorry, there are no film`s in your Library yet!';
 
 
 getWatchedMoviesInStorage();
