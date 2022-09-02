@@ -61,14 +61,28 @@ function onOpenModalCard(event) {
 }
 
 function cardMarkUp(filmObject) {
+  checkMovieByIdWatched(filmObject, KEY_WATCHED);
+  checkMovieByIdQueue(filmObject, KEY_QUEUE);
+  let markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  // if (filmObject.poster_path) {
+  //   markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
+  // } else {
+  //   markUPImg = `<img class="card__img" src="./img/placeholder.jpeg" alt="${filmObject.title}" />`;
+  // }
+
   currentMovie = filmObject;
-  const markUPImg = `<img class="card__img" src="http://image.tmdb.org/t/p/w500${filmObject.poster_path}" alt="${filmObject.title}" />`;
   cardContMarking.insertAdjacentHTML('afterbegin', markUPImg);
+
   const trimMarkupVote = trimMarkup(filmObject.vote_average);
   const trimMarkupPopular = trimMarkup(filmObject.popularity);
 
   let markupGenre = filmObject.genres;
-  let cardGenre = markupGenre.map(genr => genr.name);
+  let cardGenre
+  if (!filmObject.genres.length === 0) {
+    cardGenre = markupGenre.map(genr => genr.name);
+  } else {
+    cardGenre = "No information"
+  }
 
   const markUp = `<h1 class="card__table-heder">${filmObject.title}</h1>
       <table class="card__table">
