@@ -112,10 +112,13 @@ function cardMarkUp(filmObject) {
 function onModalBtnClick(e) {
   const { addTo } = e.currentTarget.dataset;
 
-  addMoviesToStorage(addTo, currentMovie);
-  toggleBtn(addTo);
-
   const activeBtn = document.querySelector(`.modal-${addTo}`);
+  
+  activeBtn.classList.contains('add')
+    ? addMoviesToStorage(addTo, currentMovie)
+    : removeMovieFromWatched(addTo, currentMovie);
+  
+  toggleBtn(addTo);
   checkPlace(activeBtn);
 }
 
@@ -131,11 +134,13 @@ function toggleBtn(key) {
 
   if (btn.classList.contains(classActive)) {
     btn.classList.remove(classActive);
+    btn.classList.add('add');
     btn.textContent = 'Add to ' + key;
     return;
   }
 
   btn.classList.add(classActive);
+  btn.classList.remove('add');
   btn.textContent = 'Remove from ' + key;
 }
 
@@ -174,6 +179,15 @@ function addQueueMoviesInStorage(addQueueMovie) {
     queueMovies.push(addQueueMovie);
     localStorage.setItem(KEY_QUEUE, JSON.stringify(queueMovies));
 
+  }
+}
+
+function removeMovieFromWatched(key, movie) {
+  const localStorageArr = JSON.parse(localStorage.getItem(key));
+  const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
+  if (includesMovie) {
+    const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
+    localStorage.setItem(key, JSON.stringify(updatedArr));
   }
 }
 
@@ -217,50 +231,3 @@ function trimMarkup(trim) {
 //     addToQueueButton.textContent = 'Remove from queue';
 //   }
 // }
-
-// function removeMovieFromWatched(movie) {
-//   const localStorageArr = JSON.parse(localStorage.getItem(KEY_WATCHED));
-//   const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
-//   if (includesMovie) {
-//     const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
-//     localStorage.setItem(KEY_WATCHED, JSON.stringify(updatedArr));
-//   }
-
-// Dynamic changing text-content on modal buttons
-
-addToQueueButton.addEventListener('click', () => {
-  if (addToQueueButton.textContent == 'Remove from queue') {
-    addToQueueButton.textContent = 'Removed from Queue';
-    addToQueueButton.classList.add('card-buton-change');
-  }
-  if (addToQueueButton.textContent == 'Add to queue') {
-    addToQueueButton.textContent = 'Added to Queue';
-    addToQueueButton.classList.add('card-buton-change');
-  }
-});
-
-// addToQueueButton.addEventListener('click', () => {
-//   if (addToQueueButton.textContent == "Remove from queue") {
-//     addToQueueButton.textContent = "Removed from Queue"
-//     addToQueueButton.classList.add('card-buton-change')
-//   }
-//   if (addToQueueButton.textContent == "Add to queue") {
-//     addToQueueButton.textContent = "Added to Queue"
-//     addToQueueButton.classList.add('card-buton-change')
-//   }
-// });
-//   getWatchedMoviesInStorage();
-// }
-
-// function removeMovieFromQueue(movie) {
-//   const localStorageArr = JSON.parse(localStorage.getItem(KEY_QUEUE));
-//   const includesMovie = localStorageArr.find(elem => elem.id === movie.id);
-//   if (includesMovie) {
-//     const updatedArr = localStorageArr.filter(elem => elem.id !== movie.id);
-//     localStorage.setItem(KEY_QUEUE, JSON.stringify(updatedArr));
-//   }
-
-//   getQueueMoviesInStorage();
-// }
-
-
