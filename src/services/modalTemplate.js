@@ -67,7 +67,7 @@ function cardMarkUp(filmObject) {
 
   let markupGenre = filmObject.genres;
   let cardGenre
-  if (!filmObject.genres.length === 0) {
+  if (filmObject.genres.length > 0) {
     cardGenre = markupGenre.map(genr => genr.name);
   } else {
     cardGenre = "No information"
